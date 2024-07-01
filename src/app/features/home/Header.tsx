@@ -17,8 +17,8 @@ export default function Header() {
   };
 
   return (
-    <header>
-      <div className="flex items-center justify-between gap-2 bg-zinc-800 px-8 py-4">
+    <header className="fixed top-0 left-0 w-full z-10 bg-zinc-800">
+      <div className="flex items-center justify-between gap-2 px-8 py-4">
         <Link href="/" onClick={handleHomeClick}>
           <div className="flex cursor-pointer gap-2">
             <Image src="/icons/logo.png" alt="logo" width={50} height={50} />

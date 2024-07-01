@@ -2,6 +2,7 @@ import ImageWithTextLeft from "./features/home/ImageWithTextLeft";
 import ImageWithTextRight from "./features/home/ImageWithTextRight";
 import ImageWithTextAndButtons from "./features/home/ImageWithTextAndButtons";
 import KeyFeatures from "./features/home/KeyFeatures";
+import ScrollToTopButton from "@/components/ScrollToTopBtn";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
         isTextLeft={true}
       />
       <KeyFeatures />
+      <ScrollToTopButton />
     </div>
   );
 }
