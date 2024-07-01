@@ -1,5 +1,6 @@
 import { FeatureItemProps } from "@/app/types/home";
 import Image from "next/image";
+import Link from "next/link";
 
 const FeatureItem: React.FC<FeatureItemProps> = ({ src, alt, text }) => {
   return (
@@ -37,13 +38,19 @@ const KeyFeatures: React.FC = () => {
             제작 : hiryuji@kakao.com (FE), kingmandoo95@gmail.com (BE)
           </div>
           |
-          <div className="mx-4 hover:text-green-300 cursor-pointer duration-300">
+          <Link
+            href="/terms/service"
+            className="mx-4 hover:text-green-300 cursor-pointer duration-300"
+          >
             서비스 이용약관
-          </div>
+          </Link>
           |
-          <div className="ml-4 hover:text-green-300 cursor-pointer duration-300">
+          <Link
+            href="/terms/privacy"
+            className="mx-4 hover:text-green-300 cursor-pointer duration-300"
+          >
             개인정보 처리방침
-          </div>
+          </Link>
         </div>
         <div className="flex justify-center mb-2">
           &copy; 2024 Chatfia All Rights Reserved.
