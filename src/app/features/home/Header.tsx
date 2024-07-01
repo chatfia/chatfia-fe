@@ -12,10 +12,14 @@ export default function Header() {
     setClickedLink(link);
   };
 
+  const handleHomeClick = () => {
+    setClickedLink(null);
+  };
+
   return (
     <header>
       <div className="flex items-center justify-between gap-2 bg-zinc-800 px-8 py-4">
-        <Link href="/">
+        <Link href="/" onClick={handleHomeClick}>
           <div className="flex cursor-pointer gap-2">
             <Image src="/icons/logo.png" alt="logo" width={50} height={50} />
             <Image
@@ -29,21 +33,33 @@ export default function Header() {
         <div className="flex gap-20 text-xl">
           <Link
             href="/rule"
-            className={clickedLink === "rule" ? "text-red-400" : ""}
+            className={
+              clickedLink === "rule"
+                ? "text-red-400"
+                : "transition transform hover:scale-110 cursor-pointer"
+            }
             onClick={() => handleLinkClick("rule")}
           >
             게임설명
           </Link>
           <Link
             href="/lobby"
-            className={clickedLink === "lobby" ? "text-red-400" : ""}
+            className={
+              clickedLink === "lobby"
+                ? "text-red-400"
+                : "transition transform hover:scale-110 cursor-pointer"
+            }
             onClick={() => handleLinkClick("lobby")}
           >
             게임로비
           </Link>
           <Link
             href="/donation"
-            className={clickedLink === "donation" ? "text-red-400" : ""}
+            className={
+              clickedLink === "donation"
+                ? "text-red-400"
+                : "transition transform hover:scale-110 cursor-pointer"
+            }
             onClick={() => handleLinkClick("donation")}
           >
             후원하기
