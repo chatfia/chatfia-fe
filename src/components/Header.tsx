@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import LogInBtn from "./LogInBtn";
+import LogInBtn from "../app/features/home/LogInBtn";
 
 export default function Header() {
   const [clickedLink, setClickedLink] = useState<string | null>(null);

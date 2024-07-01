@@ -1,7 +1,7 @@
-import ImageWithTextLeft from "./features/home/ImageWithTextLeft";
-import ImageWithTextRight from "./features/home/ImageWithTextRight";
-import ImageWithTextAndButtons from "./features/home/ImageWithTextAndButtons";
-import KeyFeatures from "./features/home/KeyFeatures";
+import ImageWithTextLeft from "@/app/features/home/ImageWithTextLeft";
+import ImageWithTextRight from "@/app/features/home/ImageWithTextRight";
+import ImageWithTextAndButtons from "@/app/features/home/ImageWithTextAndButtons";
+import KeyFeatures from "@/app/features/home/KeyFeatures";
 import ScrollToTopButton from "@/components/ScrollToTopBtn";
 
 export default function Home() {
