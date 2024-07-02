@@ -1,4 +1,4 @@
-import ScrollToTopButton from "@/components/ScrollToTopBtn";
+import ScrollToTopBtn from "@/components/ScrollToTopBtn";
 
 const TermsOfService: React.FC = () => {
   return (
@@ -312,7 +312,7 @@ const TermsOfService: React.FC = () => {
         <h2 className="text-2xl font-semibold">부칙</h2>
         <p className="mb-2">이 약관은 2024년 7월 1일부터 시행됩니다.</p>
       </section>
-      <ScrollToTopButton />
+      <ScrollToTopBtn />
     </div>
   );
 };

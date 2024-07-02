@@ -1,4 +1,4 @@
-import ScrollToTopButton from "@/components/ScrollToTopBtn";
+import ScrollToTopBtn from "@/components/ScrollToTopBtn";
 
 const PrivacyPolicy: React.FC = () => {
   return (
@@ -133,7 +133,7 @@ const PrivacyPolicy: React.FC = () => {
           </li>
         </ul>
       </section>
-      <ScrollToTopButton />
+      <ScrollToTopBtn />
     </div>
   );
 };
