@@ -1,3 +1,11 @@
+import GameRules from "@/app/features/rule/GameRules";
+import RoleIntroduction from "@/app/features/rule/RoleIntroduction";
+
 export default function Rule() {
-  return <div>Rule Page</div>;
+  return (
+    <div>
+      <GameRules />
+      <RoleIntroduction />
+    </div>
+  );
 }
