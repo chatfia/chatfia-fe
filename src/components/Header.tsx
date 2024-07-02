@@ -21,12 +21,19 @@ export default function Header() {
       <div className="flex items-center justify-between gap-2 px-8 py-4">
         <Link href="/" onClick={handleHomeClick}>
           <div className="flex cursor-pointer gap-2">
-            <Image src="/icons/logo.png" alt="logo" width={50} height={50} />
+            <Image
+              src="/icons/logo.png"
+              alt="logo"
+              width={50}
+              height={50}
+              className="no-user-select no-user-drag"
+            />
             <Image
               src="/imgs/chatfia.png"
               alt="chatfia"
               width={130}
               height={50}
+              className="no-user-select no-user-drag"
             />
           </div>
         </Link>

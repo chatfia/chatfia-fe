@@ -17,8 +17,8 @@ const config = {
       },
     },
     extend: {
-      writeingMode: {
-        horizontail: "horizontal-tb",
+      writingMode: {
+        horizontal: "horizontal-tb",
         vertical: "vertical-rl",
       },
       transitionDuration: {
@@ -97,6 +97,34 @@ const config = {
     },
   },
   plugins: [
+    function ({
+      addUtilities,
+    }: {
+      addUtilities: (
+        utilities: Record<string, any>,
+        options?: string[]
+      ) => void;
+    }) {
+      addUtilities(
+        {
+          ".no-user-select": {
+            "-webkit-user-select": "none",
+            "-khtml-user-select": "none",
+            "-moz-user-select": "none",
+            "-o-user-select": "none",
+            "user-select": "none",
+          },
+          ".no-user-drag": {
+            "-webkit-user-drag": "none",
+            "-khtml-user-drag": "none",
+            "-moz-user-drag": "none",
+            "-o-user-drag": "none",
+            "user-drag": "none",
+          },
+        },
+        ["responsive", "hover"]
+      );
+    },
     require("tailwindcss-animate"),
     require("@tailwindcss/line-clamp"),
     require("tailwind-scrollbar-hide"),

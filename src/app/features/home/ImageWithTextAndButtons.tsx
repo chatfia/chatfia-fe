@@ -1,6 +1,7 @@
 import { HomeProps } from "@/app/types/home";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
 const ImageWithTextAndButtons: React.FC<HomeProps> = ({ title, text, img }) => {
@@ -18,7 +19,15 @@ const ImageWithTextAndButtons: React.FC<HomeProps> = ({ title, text, img }) => {
           </Button>
         </div>
       </div>
-      <Image src={img} alt="마피아게임" width={300} height={300} />
+      <NoRightClickImg>
+        <Image
+          src={img}
+          alt="마피아게임"
+          width={300}
+          height={300}
+          className="no-user-select no-user-drag"
+        />
+      </NoRightClickImg>
     </div>
   );
 };
