@@ -1,4 +1,5 @@
 import { FeatureItemProps } from "@/app/types/home";
+import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,7 +7,15 @@ const FeatureItem: React.FC<FeatureItemProps> = ({ src, alt, text }) => {
   return (
     <div className="flex-col space-y-3">
       <div className="flex justify-center">
-        <Image src={src} alt={alt} width={80} height={80} />
+        <NoRightClickImg>
+          <Image
+            src={src}
+            alt={alt}
+            width={80}
+            height={80}
+            className="no-user-select no-user-drag"
+          />
+        </NoRightClickImg>
       </div>
       <p className="text-center">{text}</p>
     </div>
