@@ -20,7 +20,8 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.3.0",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",

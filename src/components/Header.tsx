@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import useNavigationStore from "@/app/stores/navigationStore";
 import Link from "next/link";
 import Image from "next/image";
 import LogInBtn from "../app/features/home/LogInBtn";
 
 export default function Header() {
-  const [clickedLink, setClickedLink] = useState<string | null>(null);
+  const { clickedLink, setClickedLink } = useNavigationStore();
 
   const handleLinkClick = (link: string) => {
     setClickedLink(link);

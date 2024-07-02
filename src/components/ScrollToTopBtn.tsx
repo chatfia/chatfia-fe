@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowBigUp } from "lucide-react";
 
-export default function ScrollToTopButton() {
+export default function ScrollToTopBtn() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

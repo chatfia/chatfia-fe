@@ -61,7 +61,7 @@ const KeyFeatures: React.FC = () => {
             개인정보 처리방침
           </Link>
         </div>
-        <div className="flex justify-center mb-2">
+        <div className="flex justify-center mb-8">
           &copy; 2024 Chatfia All Rights Reserved.
         </div>
       </footer>
