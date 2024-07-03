@@ -29,7 +29,7 @@ const cardData = [
   },
 ];
 
-const GameInfoCardsTop: React.FC = () => {
+export const GameInfoCardsTop: React.FC = () => {
   return (
     <div>
       <div className="flex justify-around -space-x-[10%] text-xl font-bold mb-20">
@@ -63,5 +63,3 @@ const GameInfoCardsTop: React.FC = () => {
     </div>
   );
 };
-
-export default GameInfoCardsTop;

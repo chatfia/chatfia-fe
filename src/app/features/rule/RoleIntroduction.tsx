@@ -1,6 +1,6 @@
-import RoleCard from "@/app/features/rule/RoleCard";
+import { RoleCard } from "@/app/features/rule/RoleCard";
 
-const RoleIntroduction: React.FC = () => {
+export const RoleIntroduction: React.FC = () => {
   return (
     <>
       <div className="bg-custom">
@@ -66,5 +66,3 @@ const RoleIntroduction: React.FC = () => {
     </>
   );
 };
-
-export default RoleIntroduction;
