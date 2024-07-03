@@ -5,7 +5,7 @@ import { KeyFeatures } from "@/app/features/home/KeyFeatures";
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <>
       <ImgWithTextLeft
         title="마피아게임 좋아하시나요?"
         text="Do you like Mafia games?"
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
         isTextLeft={true}
       />
       <KeyFeatures />
-    </div>
+    </>
   );
 };
 

@@ -3,9 +3,9 @@ import { RoleIntroduction } from "@/app/features/rule/RoleIntroduction";
 
 export default function Rule() {
   return (
-    <div>
+    <>
       <GameRules />
       <RoleIntroduction />
-    </div>
+    </>
   );
 }
