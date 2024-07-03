@@ -22,7 +22,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({ src, alt, text }) => {
   );
 };
 
-const KeyFeatures: React.FC = () => {
+export const KeyFeatures: React.FC = () => {
   return (
     <div>
       <header className="flex justify-center text-4xl font-bold py-10">
@@ -68,5 +68,3 @@ const KeyFeatures: React.FC = () => {
     </div>
   );
 };
-
-export default KeyFeatures;

@@ -1,4 +1,4 @@
-const TermsOfService: React.FC = () => {
+export const TermsOfService: React.FC = () => {
   return (
     <div className="p-6 text-neutral-300">
       <h1 className="text-3xl font-bold mb-4">
@@ -313,5 +313,3 @@ const TermsOfService: React.FC = () => {
     </div>
   );
 };
-
-export default TermsOfService;
