@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import GameInfoCardsTop from "@/app/features/rule/GameInfoCardsTop";
+import { GameInfoCardsTop } from "@/app/features/rule/GameInfoCardsTop";
 import { ProgressBar } from "@/components/ui/progress";
-import GameInfoCardsBottom from "@/app/features/rule/GameInfoCardsBottom";
+import { GameInfoCardsBottom } from "@/app/features/rule/GameInfoCardsBottom";
 
 const checkpoints = Array.from({ length: 11 }, (element, index) => index * 10);
 
-const GameRules: React.FC = () => {
+export const GameRules: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -49,5 +49,3 @@ const GameRules: React.FC = () => {
     </div>
   );
 };
-
-export default GameRules;

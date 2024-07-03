@@ -1,7 +1,7 @@
-import ImgWithTextLeft from "@/app/features/home/ImgWithTextLeft";
-import ImgWithTextRight from "@/app/features/home/ImgWithTextRight";
-import ImgWithTextAndBtns from "@/app/features/home/ImgWithTextAndBtns";
-import KeyFeatures from "@/app/features/home/KeyFeatures";
+import { ImgWithTextLeft } from "@/app/features/home/ImgWithTextLeft";
+import { ImgWithTextRight } from "@/app/features/home/ImgWithTextRight";
+import { ImgWithTextAndBtns } from "@/app/features/home/ImgWithTextAndBtns";
+import { KeyFeatures } from "@/app/features/home/KeyFeatures";
 
 export default function Home() {
   return (

@@ -2,7 +2,7 @@ import { RoleCardProps } from "@/app/types/rule";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
-const RoleCard: React.FC<RoleCardProps> = ({
+export const RoleCard: React.FC<RoleCardProps> = ({
   img,
   alt,
   title,
@@ -92,5 +92,3 @@ const RoleCard: React.FC<RoleCardProps> = ({
     </div>
   );
 };
-
-export default RoleCard;

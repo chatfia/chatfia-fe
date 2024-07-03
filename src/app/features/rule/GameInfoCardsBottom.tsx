@@ -33,7 +33,7 @@ const cardData = [
   },
 ];
 
-const GameInfoCardsBottom: React.FC = () => {
+export const GameInfoCardsBottom: React.FC = () => {
   return (
     <div className="mx-auto mt-4 flex w-11/12 justify-around space-x-[4%]">
       {cardData.map((card, index) => (
@@ -47,5 +47,3 @@ const GameInfoCardsBottom: React.FC = () => {
     </div>
   );
 };
-
-export default GameInfoCardsBottom;
