@@ -1,14 +1,14 @@
 "use client";
 
 import { HomeProps } from "@/app/types/home";
-import useNavigationStore from "@/app/stores/navigationStore";
+import { navigationStore } from "@/app/stores/navigationStore";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
 const ImgWithTextAndBtns: React.FC<HomeProps> = ({ title, text, img }) => {
-  const { setClickedLink } = useNavigationStore();
+  const { setClickedLink } = navigationStore();
   return (
     <div className="flex items-center justify-center space-x-32 pb-20 pt-20 font-bold">
       <div>

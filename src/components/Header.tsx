@@ -1,12 +1,12 @@
 "use client";
 
-import useNavigationStore from "@/app/stores/navigationStore";
+import { navigationStore } from "@/app/stores/navigationStore";
 import Link from "next/link";
 import Image from "next/image";
-import LogInBtn from "../app/features/home/LogInBtn";
+import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
-  const { clickedLink, setClickedLink } = useNavigationStore();
+  const { clickedLink, setClickedLink } = navigationStore();
 
   const handleLinkClick = (link: string) => {
     setClickedLink(link);

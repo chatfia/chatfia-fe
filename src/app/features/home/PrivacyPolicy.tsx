@@ -1,5 +1,3 @@
-import ScrollToTopBtn from "@/components/ScrollToTopBtn";
-
 const PrivacyPolicy: React.FC = () => {
   return (
     <div className="container mx-auto py-10">
@@ -133,7 +131,6 @@ const PrivacyPolicy: React.FC = () => {
           </li>
         </ul>
       </section>
-      <ScrollToTopBtn />
     </div>
   );
 };
