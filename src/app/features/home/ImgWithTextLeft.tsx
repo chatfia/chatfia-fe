@@ -2,7 +2,7 @@ import { HomeProps } from "@/app/types/home";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
-const ImgWithTextLeft: React.FC<HomeProps> = ({ title, text, img }) => {
+export const ImgWithTextLeft: React.FC<HomeProps> = ({ title, text, img }) => {
   return (
     <div className="flex items-center justify-center space-x-32 pb-20 pt-20 font-bold">
       <div>
@@ -22,5 +22,3 @@ const ImgWithTextLeft: React.FC<HomeProps> = ({ title, text, img }) => {
     </div>
   );
 };
-
-export default ImgWithTextLeft;

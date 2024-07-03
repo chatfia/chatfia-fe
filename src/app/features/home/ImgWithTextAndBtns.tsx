@@ -7,7 +7,11 @@ import Link from "next/link";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
-const ImgWithTextAndBtns: React.FC<HomeProps> = ({ title, text, img }) => {
+export const ImgWithTextAndBtns: React.FC<HomeProps> = ({
+  title,
+  text,
+  img,
+}) => {
   const { setClickedLink } = navigationStore();
   return (
     <div className="flex items-center justify-center space-x-32 pb-20 pt-20 font-bold">
@@ -35,5 +39,3 @@ const ImgWithTextAndBtns: React.FC<HomeProps> = ({ title, text, img }) => {
     </div>
   );
 };
-
-export default ImgWithTextAndBtns;

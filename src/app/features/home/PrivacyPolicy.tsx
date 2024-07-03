@@ -1,4 +1,4 @@
-const PrivacyPolicy: React.FC = () => {
+export const PrivacyPolicy: React.FC = () => {
   return (
     <div className="container mx-auto py-10">
       <h1 className="text-4xl font-bold mb-6">개인정보 처리방침</h1>
@@ -134,5 +134,3 @@ const PrivacyPolicy: React.FC = () => {
     </div>
   );
 };
-
-export default PrivacyPolicy;
