@@ -43,7 +43,7 @@ const Auth: React.FC = () => {
           />
         </Link>
       </div>
-      <CardDescription>{description}</CardDescription>
+      <CardDescription className="text-center">{description}</CardDescription>
     </CardHeader>
   );
 
