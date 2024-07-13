@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🔫 Chatfia
+팀 프로젝트
 
-## Getting Started
+[Project Notion](https://hiryuji.notion.site/Chatfia-099fa11562af47ff88208c03db710f3b)
 
-First, run the development server:
+FE 류지현 - https://github.com/torong-dev
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+BE 현민영 - https://github.com/95hyun
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📆 기간
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+24.04.01 ~
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### ❓ 개발 이유
 
-## Learn More
+학창시절 친구들과 마피아게임 하기를 좋아했다. 마침 적용해보고 싶은 기술이 Websocket을 이용한 '실시간채팅' 기능이었는데, 실시간 채팅 외 로도 Websocket을 이용해 양방향 통신을 활용하여 '웹 마피아게임'을 만들어보면 재밌겠다는 생각이 들어 개발을 시작했다.
 
-To learn more about Next.js, take a look at the following resources:
+### 🛠️ 사용 기술 및 도구
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+BE - Java 17, Spring Boot 3.2.3, Spring security, JWT, JPA, MySQL, Websocket, Github Actions, Nginx, Docker, AWS (EC2, RDS, S3, Route53)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+FE - Next.js, TypeScript, Tailwind CSS, React, Zustand, React-Query, Github Actions, Vercel
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 기능
+- 로그인 / 회원가입 (Refresh Token 적용)
+- 회원정보 수정/탈퇴
+- 방 만들기/참여
+- 게임 시작, 게임 나가기
+- 실시간 채팅
+- 게임 로직
+- 타이머
+- ...
