@@ -12,9 +12,10 @@ export const authApi = {
   },
 
   // 회원정보 조회
-  getUserInfo: () => {
-    return fetchExtended("/api/user", {
+  getUserInfo: async (): Promise<UserInfoResponse> => {
+    const response = await fetchExtended("/api/info", {
       method: "GET",
-    }).then((response) => response.json());
+    });
+    return await response.json();
   },
 };

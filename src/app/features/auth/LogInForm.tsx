@@ -82,7 +82,7 @@ export const LogInForm: React.FC<LogInFormProps> = ({ step, setStep }) => {
     <Form {...logInForm}>
       <form
         onSubmit={logInForm.handleSubmit(onLogInSubmit)}
-        className="relative p-1 space-y-3 overflow-x-hidden"
+        className="relative space-y-3 overflow-x-hidden p-1"
         method="GET"
       >
         <FormField

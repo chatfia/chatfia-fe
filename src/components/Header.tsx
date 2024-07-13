@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-10 bg-zinc-800">
+    <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
       <div className="flex items-center justify-between gap-2 px-8 py-4">
         <Link href="/" onClick={handleHomeClick}>
           <div className="flex cursor-pointer gap-2">
@@ -43,7 +43,7 @@ export default function Header() {
             className={
               clickedLink === "rule"
                 ? "text-red-400"
-                : "transition transform hover:scale-110 cursor-pointer"
+                : "transform cursor-pointer transition hover:scale-110"
             }
             onClick={() => handleLinkClick("rule")}
           >
@@ -54,7 +54,7 @@ export default function Header() {
             className={
               clickedLink === "lobby"
                 ? "text-red-400"
-                : "transition transform hover:scale-110 cursor-pointer"
+                : "transform cursor-pointer transition hover:scale-110"
             }
             onClick={() => handleLinkClick("lobby")}
           >
@@ -65,7 +65,7 @@ export default function Header() {
             className={
               clickedLink === "donation"
                 ? "text-red-400"
-                : "transition transform hover:scale-110 cursor-pointer"
+                : "transform cursor-pointer transition hover:scale-110"
             }
             onClick={() => handleLinkClick("donation")}
           >

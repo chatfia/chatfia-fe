@@ -32,7 +32,7 @@ const cardData = [
 export const GameInfoCardsTop: React.FC = () => {
   return (
     <div>
-      <div className="flex justify-around -space-x-[10%] text-xl font-bold mb-20">
+      <div className="mb-20 flex justify-around -space-x-[10%] text-xl font-bold">
         <div className="flex items-end space-x-2">
           <p>낮</p>
           <p className="text-sm">(자유 대화)</p>
@@ -50,10 +50,10 @@ export const GameInfoCardsTop: React.FC = () => {
           <p className="text-sm">(자유 대화)</p>
         </div>
       </div>
-      <div className="flex justify-around mb-4 w-4/5 mx-auto space-x-1">
+      <div className="mx-auto mb-4 flex w-4/5 justify-around space-x-1">
         {cardData.map((card, index) => (
           <HoverCard key={index}>
-            <HoverCardTrigger className="cursor-pointer hover:text-green-400 duration-300">
+            <HoverCardTrigger className="cursor-pointer duration-300 hover:text-green-400">
               {card.trigger}
             </HoverCardTrigger>
             <HoverCardContent>{card.content}</HoverCardContent>

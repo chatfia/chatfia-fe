@@ -1,22 +1,22 @@
 export const TermsOfService: React.FC = () => {
   return (
     <div className="p-6 text-neutral-300">
-      <h1 className="text-3xl font-bold mb-4">
+      <h1 className="mb-4 text-3xl font-bold">
         Chatfia(챗피아) 서비스 이용약관
       </h1>
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제1장 총칙</h2>
-        <h3 className="text-xl font-semibold mt-4">제1조 (목적)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제1조 (목적)</h3>
         <p className="mb-2">
           이 약관은 Chatfia(챗피아)(이하 “회사”)가 온라인으로 제공하는 게임 및
           이에 부수된 제반 서비스(이하 “게임서비스”)의 이용과 관련하여 회사와
           회원 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로
           합니다.
         </p>
-        <h3 className="text-xl font-semibold mt-4">제2조 (용어의 정의)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제2조 (용어의 정의)</h3>
         <p className="mb-2">① 이 약관에서 사용하는 정의는 다음과 같습니다.</p>
-        <ol className="list-decimal ml-6 mb-2">
+        <ol className="mb-2 ml-6 list-decimal">
           <li>
             “회사”라 함은 온라인을 통하여 게임서비스를 제공하는 사업자를
             의미합니다.
@@ -58,7 +58,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제2장 이용계약의 체결</h2>
-        <h3 className="text-xl font-semibold mt-4">제3조 (이용신청 및 방법)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제3조 (이용신청 및 방법)</h3>
         <p className="mb-2">
           ① 회사가 제공하는 게임서비스를 이용하고자 하는 자는 회사가 게임 초기
           화면이나 게임서비스 홈페이지에서 제공하는 이용신청서를 작성하는
@@ -74,7 +74,7 @@ export const TermsOfService: React.FC = () => {
           회원의 권리를 주장할 수 없고, 회사는 환급 없이 이용계약을 취소하거나
           해지할 수 있습니다.
         </p>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제4조 (이용신청의 승낙과 제한)
         </h3>
         <p className="mb-2">
@@ -85,7 +85,7 @@ export const TermsOfService: React.FC = () => {
           ② 회사는 다음 각 호의 어느 하나에 해당하는 이용신청에 대해서는 승낙을
           하지 않을 수 있습니다.
         </p>
-        <ol className="list-decimal ml-6 mb-2">
+        <ol className="mb-2 ml-6 list-decimal">
           <li>실명 또는 타인의 명의를 도용한 경우</li>
           <li>이용요금을 납부하지 않거나 잘못 납부하여 확인할 수 없는 경우</li>
           <li>청소년이 법정대리인의 동의를 얻지 아니한 경우</li>
@@ -103,7 +103,7 @@ export const TermsOfService: React.FC = () => {
           <li>법령에서 금지하는 행위를 할 목적으로 이용신청을 하는 경우</li>
           <li>그 밖에 승낙이 부적절하다고 판단되는 경우</li>
         </ol>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제5조 (회원 계정(ID) 및 비밀번호)
         </h3>
         <p className="mb-2">
@@ -122,7 +122,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제3장 개인정보 보호</h2>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제6조 (개인정보의 보호 및 관리)
         </h3>
         <p className="mb-2">
@@ -139,7 +139,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제4장 계약 당사자의 의무</h2>
-        <h3 className="text-xl font-semibold mt-4">제7조 (회사의 의무)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제7조 (회사의 의무)</h3>
         <p className="mb-2">
           ① 회사는 관련 법령을 준수하고, 이 약관이 정하는 권리의 행사와 의무의
           이행을 신의에 따라 성실하게 합니다.
@@ -154,9 +154,9 @@ export const TermsOfService: React.FC = () => {
           생기거나 데이터 등이 멸실된 때에는 지체 없이 이를 수리 또는 복구하도록
           최선의 노력을 다합니다.
         </p>
-        <h3 className="text-xl font-semibold mt-4">제8조 (회원의 의무)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제8조 (회원의 의무)</h3>
         <p className="mb-2">① 회원은 다음 행위를 하여서는 안 됩니다.</p>
-        <ol className="list-decimal ml-6 mb-2">
+        <ol className="mb-2 ml-6 list-decimal">
           <li>신청 또는 변경 시 허위내용의 기재</li>
           <li>타인의 정보도용</li>
           <li>회사의 임직원, 운영자, 기타 관계자를 사칭하는 행위</li>
@@ -179,7 +179,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제5장 서비스 이용</h2>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제9조 (서비스의 제공 및 중단)
         </h3>
         <p className="mb-2">
@@ -193,7 +193,7 @@ export const TermsOfService: React.FC = () => {
           ③ 회사는 다음 각 호의 어느 하나에 해당하는 경우에는 일정한 시간 동안
           게임서비스를 제공하지 않을 수 있습니다.
         </p>
-        <ol className="list-decimal ml-6 mb-2">
+        <ol className="mb-2 ml-6 list-decimal">
           <li>
             설비의 보수점검, 교체, 정기점검 또는 게임 내용의 수정을 위하여
             필요한 경우
@@ -215,7 +215,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제6장 청약철회 및 환불</h2>
-        <h3 className="text-xl font-semibold mt-4">제10조 (청약철회)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제10조 (청약철회)</h3>
         <p className="mb-2">
           ① 회사와 유료서비스 이용에 관한 계약을 체결한 회원은 구매일 또는
           유료서비스 이용가능일로부터 7일 이내에는 청약의 철회를 할 수 있습니다.
@@ -224,13 +224,13 @@ export const TermsOfService: React.FC = () => {
           ② 회원은 다음 각 호의 어느 하나에 해당하는 경우에는 회사의 의사에
           반하여 청약철회를 할 수 없습니다.
         </p>
-        <ol className="list-decimal ml-6 mb-2">
+        <ol className="mb-2 ml-6 list-decimal">
           <li>회원에게 책임이 있는 사유로 재화 등이 멸실되거나 훼손된 경우</li>
           <li>회원이 재화를 사용 또는 일부 소비한 경우</li>
           <li>시간이 지나 다시 판매하기 곤란할 경우</li>
           <li>복제가능한 재화 등의 포장을 훼손한 경우</li>
         </ol>
-        <h3 className="text-xl font-semibold mt-4">제11조 (환불)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제11조 (환불)</h3>
         <p className="mb-2">
           ① 회원이 직접 구매한 캐쉬의 환불을 요청하면 이를 환불 받을 수
           있습니다.
@@ -243,7 +243,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제7장 손해배상 및 면책조항</h2>
-        <h3 className="text-xl font-semibold mt-4">제12조 (손해배상)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제12조 (손해배상)</h3>
         <p className="mb-2">
           ① 회사가 고의 또는 중과실로 회원에게 손해를 끼친 경우, 손해에 대하여
           배상할 책임이 있습니다.
@@ -252,7 +252,7 @@ export const TermsOfService: React.FC = () => {
           ② 회원이 본 약관을 위반하여 회사에 손해를 끼친 경우, 회원은 회사에
           대하여 그 손해에 대하여 배상할 책임이 있습니다.
         </p>
-        <h3 className="text-xl font-semibold mt-4">제13조 (면책조항)</h3>
+        <h3 className="mt-4 text-xl font-semibold">제13조 (면책조항)</h3>
         <p className="mb-2">
           ① 회사는 천재지변 또는 이에 준하는 불가항력으로 인하여 서비스를 제공할
           수 없는 경우에는 책임이 면제됩니다.
@@ -269,7 +269,7 @@ export const TermsOfService: React.FC = () => {
 
       <section className="mb-6">
         <h2 className="text-2xl font-semibold">제8장 기타</h2>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제14조 (회원에 대한 통지)
         </h3>
         <p className="mb-2">
@@ -280,7 +280,7 @@ export const TermsOfService: React.FC = () => {
           ② 회사는 회원 전체에게 통지를 하는 경우 7일 이상 회사의 게임사이트의
           초기화면에 게시함으로써 통지에 갈음할 수 있습니다.
         </p>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제15조 (재판권 및 준거법)
         </h3>
         <p className="mb-2">
@@ -288,7 +288,7 @@ export const TermsOfService: React.FC = () => {
           발생한 분쟁으로 소송이 제기되는 경우, 법령에 정한 절차에 따른 법원을
           관할 법원으로 합니다.
         </p>
-        <h3 className="text-xl font-semibold mt-4">
+        <h3 className="mt-4 text-xl font-semibold">
           제16조 (회원의 고충처리 및 분쟁해결)
         </h3>
         <p className="mb-2">
