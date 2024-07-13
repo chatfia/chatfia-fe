@@ -54,7 +54,7 @@ const Auth: React.FC = () => {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <Card
           className={cn(
-            "flex h-[750px] w-[500px] flex-col justify-center px-4"
+            "flex h-[750px] w-[500px] flex-col justify-center px-4",
           )}
         >
           <motion.div

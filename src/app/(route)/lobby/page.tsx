@@ -14,7 +14,7 @@ const Lobby: React.FC = () => {
   const handleCreateRoom = (
     roomTitle: string,
     isPrivate: boolean,
-    password: string
+    password: string,
   ) => {
     const newRoom: GameRoomProps = {
       img: "red",
@@ -32,7 +32,7 @@ const Lobby: React.FC = () => {
   };
 
   const filteredRooms = rooms.filter((room) =>
-    room.title.toLowerCase().includes(searchInput.toLowerCase())
+    room.title.toLowerCase().includes(searchInput.toLowerCase()),
   );
 
   return (
@@ -40,7 +40,7 @@ const Lobby: React.FC = () => {
       <div className="mb-20 mt-40 flex flex-col text-center">
         <p className="text-4xl font-bold">게임로비</p>
         <p className="mb-4 font-bold">Start your Chatfia game now</p>
-        <div className="flex justify-center my-4">
+        <div className="my-4 flex justify-center">
           <GameRoomDialog
             isOpen={isOpen}
             setIsOpen={setIsOpen}
