@@ -41,9 +41,3 @@ export const fetchExtended = returnFetch({
     },
   },
 });
-
-// 사용 예:
-fetchExtended("/todos/1")
-  .then((response) => response.json()) // JSON으로 파싱
-  .then((data) => console.log(data))
-  .catch((error) => console.error("Error during fetch:", error));
