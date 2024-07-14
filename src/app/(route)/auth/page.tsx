@@ -13,6 +13,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { LogInForm } from "@/app/features/auth/LogInForm";
+import { SignUpForm } from "@/app/features/auth/SignUpForm";
 
 const Auth: React.FC = () => {
   const [step, setStep] = useState<number>(0);
@@ -68,6 +69,25 @@ const Auth: React.FC = () => {
             {renderHeader("LOGIN", "or use your account")}
             <CardContent>
               <LogInForm step={step} setStep={setStep} />
+            </CardContent>
+          </motion.div>
+          <motion.div
+            className={cn(
+              "absolute left-0 right-0 h-full flex-col justify-center space-y-3 overflow-y-auto scrollbar-hide",
+              {
+                "opacity-100 transition-opacity duration-100": step === 1,
+                "opacity-0 transition-opacity duration-100": step !== 1,
+              },
+            )}
+            animate={{ translateX: `${(1 - step) * 100}%` }}
+            style={{ translateX: `${(1 - step) * 100}%` }}
+            transition={{
+              ease: "easeInOut",
+            }}
+          >
+            {renderHeader("SIGN UP", "or use your email for registration")}
+            <CardContent>
+              <SignUpForm step={step} setStep={setStep} />
             </CardContent>
           </motion.div>
         </Card>
