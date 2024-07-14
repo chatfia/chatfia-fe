@@ -73,7 +73,7 @@ const Auth: React.FC = () => {
           </motion.div>
           <motion.div
             className={cn(
-              "absolute left-0 right-0 h-full flex-col justify-center space-y-3 overflow-y-auto scrollbar-hide",
+              "absolute left-0 right-0 h-full flex-col justify-center space-y-3 overflow-y-auto pt-16 scrollbar-hide",
               {
                 "opacity-100 transition-opacity duration-100": step === 1,
                 "opacity-0 transition-opacity duration-100": step !== 1,

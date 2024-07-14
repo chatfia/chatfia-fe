@@ -3,6 +3,8 @@ import {
   LogInRequest,
   VerifyEmailRequest,
   VerifyCodeRequest,
+  SignUpRequest,
+  SignUpResponse,
 } from "@/app/types/auth";
 import { UserInfoResponse } from "@/app/types/auth";
 
@@ -37,5 +39,17 @@ export const authApi = {
       method: "POST",
       body: JSON.stringify(codeData),
     });
+  },
+
+  // 회원가입
+  signUp: async (signUpUserData: SignUpRequest): Promise<SignUpResponse> => {
+    const response = await fetchExtended("/api/signup", {
+      method: "POST",
+      body: JSON.stringify(signUpUserData),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return await (response.json() as Promise<SignUpResponse>);
   },
 };

@@ -30,3 +30,16 @@ export interface VerifyCodeRequest {
   email: string;
   code: string;
 }
+
+// 회원가입 시 추가 입력 타입
+export interface SignUpRequest extends Credentials {
+  nickname: string;
+  confirmPassword: string;
+}
+
+// 회원가입 후 응답 타입
+export interface SignUpResponse {
+  id: number;
+  email: string;
+  nickname: string;
+}
