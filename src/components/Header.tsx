@@ -16,6 +16,10 @@ export default function Header() {
     setClickedLink(null);
   };
 
+  const handleLogInClick = () => {
+    setClickedLink(null);
+  };
+
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
       <div className="flex items-center justify-between gap-2 px-8 py-4">
@@ -72,7 +76,7 @@ export default function Header() {
             후원하기
           </Link>
         </div>
-        <LogInBtn />
+        <LogInBtn onClick={handleLogInClick} />
       </div>
     </header>
   );
