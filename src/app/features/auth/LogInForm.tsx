@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { logInSchema } from "@/app/validators/auth";
-import { LogInFormProps } from "@/app/types/auth";
+import { AuthFormProps } from "@/app/types/auth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 // 로그인 입력 타입 정의
 type LogInInput = z.infer<typeof logInSchema>;
 
-export const LogInForm: React.FC<LogInFormProps> = ({ step, setStep }) => {
+export const LogInForm: React.FC<AuthFormProps> = ({ step, setStep }) => {
   const router = useRouter();
   const { toast } = useToast();
 
