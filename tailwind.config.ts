@@ -102,7 +102,7 @@ const config = {
     }: {
       addUtilities: (
         utilities: Record<string, any>,
-        options?: string[]
+        options?: string[],
       ) => void;
     }) {
       addUtilities(
@@ -122,11 +122,10 @@ const config = {
             "user-drag": "none",
           },
         },
-        ["responsive", "hover"]
+        ["responsive", "hover"],
       );
     },
     require("tailwindcss-animate"),
-    require("@tailwindcss/line-clamp"),
     require("tailwind-scrollbar-hide"),
   ],
 } satisfies Config;
