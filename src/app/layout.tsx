@@ -24,8 +24,8 @@ export default function RootLayout({
         <QueryProvider>
           <ConditionalHeader />
           {children}
-          <Toaster />
           <ScrollToTopBtn />
+          <Toaster />
         </QueryProvider>
       </body>
     </html>
