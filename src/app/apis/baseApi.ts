@@ -3,28 +3,29 @@ import returnFetch from "return-fetch";
 // return-fetch를 사용하여 확장된 fetch 함수
 export const fetchExtended = returnFetch({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+  },
   interceptors: {
     request: async (args) => {
-      // 요청이 전송되기 전에 실행되는 요청 인터셉터
-      console.log("********* before sending request *********");
-      console.log("URL:", args[0].toString());
-      console.log("Request Init:", args[1], "\n\n");
-
-      // args[1]이 undefined일 경우 초기화
-      if (!args[1]) {
-        args[1] = {};
-      }
-
-      // 토큰을 가져와 Authorization 헤더에 추가
       const token = localStorage.getItem("token");
       if (token) {
+        if (!args[1]) {
+          args[1] = {};
+        }
+        if (!args[1].headers) {
+          args[1].headers = {};
+        }
         args[1].headers = {
           ...args[1].headers,
           Authorization: `Bearer ${token}`,
         };
       }
 
+      // 요청이 전송되기 전에 실행되는 요청 인터셉터
+      console.log("********* before sending request *********");
+      console.log("URL:", args[0].toString());
+      console.log("Request Init:", args[1], "\n\n");
       return args;
     },
     response: async (response, requestArgs) => {
