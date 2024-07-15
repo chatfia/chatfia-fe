@@ -18,10 +18,17 @@ export const authApi = {
   },
 
   // 로그인
-  logIn: (logInUserData: LogInRequest) => {
+  logIn: async (logInUserData: LogInRequest) => {
     return fetchExtended("/api/login", {
       method: "POST",
       body: JSON.stringify(logInUserData),
+    });
+  },
+
+  // 로그아웃
+  logOut: () => {
+    return fetchExtended("/api/logout", {
+      method: "POST",
     });
   },
 

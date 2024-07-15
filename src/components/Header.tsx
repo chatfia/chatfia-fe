@@ -1,12 +1,15 @@
 "use client";
 
 import { navigationStore } from "@/app/stores/navigationStore";
+import { useUserStore } from "@/app/stores/useUserStore";
 import Link from "next/link";
 import Image from "next/image";
+import { CircleUserRound, DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
   const { clickedLink, setClickedLink } = navigationStore();
+  const { isLoggedIn, user, logOut } = useUserStore();
 
   const handleLinkClick = (link: string) => {
     setClickedLink(link);
@@ -76,7 +79,17 @@ export default function Header() {
             후원하기
           </Link>
         </div>
-        <LogInBtn onClick={handleLogInClick} />
+        {isLoggedIn && user ? (
+          <div className="flex items-center gap-4">
+            <CircleUserRound className="text-white" />
+            <span>{user.email}</span>
+            <button onClick={logOut}>
+              <DoorOpen className="text-white" />
+            </button>
+          </div>
+        ) : (
+          <LogInBtn onClick={handleLogInClick} />
+        )}
       </div>
     </header>
   );
