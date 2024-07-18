@@ -40,7 +40,6 @@ export const LogInForm: React.FC<AuthFormProps> = ({ step, setStep }) => {
 
   // 로그인 폼 제출 핸들러
   function onLogInSubmit(data: LogInInput) {
-    console.log("로그인: ", data);
     logInMutation.mutate(data); // 로그인 뮤테이션 실행
   }
 
@@ -54,7 +53,7 @@ export const LogInForm: React.FC<AuthFormProps> = ({ step, setStep }) => {
       });
       router.push("/"); // 로그인 성공 시 홈으로 리다이렉트
     } else if (logInMutation.isError) {
-      let title = "로그인에 실패했습니다.";
+      let title = "로그인에 실패했습니다. 다시 로그인해주세요.";
       let errorDescription = "";
       if (logInMutation.error.message.includes("아이디가 잘못되었습니다.")) {
         errorDescription = "아이디가 잘못되었습니다.";
