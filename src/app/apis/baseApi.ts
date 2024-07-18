@@ -8,28 +8,18 @@ export const fetchExtended = returnFetch({
   },
   interceptors: {
     request: async (args) => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        if (!args[1]) {
-          args[1] = {};
-        }
-        if (!args[1].headers) {
-          args[1].headers = {};
-        }
-        args[1].headers = {
-          ...args[1].headers,
-          Authorization: `Bearer ${token}`,
-        };
-      }
+      args[1] = {
+        ...args[1],
+        credentials: "include",
+      };
 
-      // 요청이 전송되기 전에 실행되는 요청 인터셉터
       console.log("********* before sending request *********");
       console.log("URL:", args[0].toString());
       console.log("Request Init:", args[1], "\n\n");
+      console.log("쿠키 포함 여부 확인:", document.cookie);
       return args;
     },
     response: async (response, requestArgs) => {
-      // 응답이 수신된 후에 실행되는 응답 인터셉터
       console.log("********* after receiving response *********");
       console.log("URL:", requestArgs[0].toString());
       console.log("Request Init:", requestArgs[1], "\n\n");
@@ -49,11 +39,24 @@ export const fetchExtended = returnFetch({
           console.error(`응답 에러: ${errorMessage}`);
           throw new Error(errorMessage);
         } catch (err) {
+          console.error(`응답 파싱 실패 (상태 코드: ${response.status})`, err);
           throw new Error(`응답 파싱 실패 (상태 코드: ${response.status})`);
         }
       }
 
-      return response;
+      // 응답 데이터 로그
+      try {
+        const data = await response.json();
+        console.log("응답 데이터:", data);
+        return new Response(JSON.stringify(data), {
+          status: response.status,
+          statusText: response.statusText,
+          headers: response.headers,
+        });
+      } catch (err) {
+        console.error("응답 데이터를 파싱할 수 없습니다:", err);
+        throw new Error("응답 데이터를 파싱할 수 없습니다");
+      }
     },
   },
 });

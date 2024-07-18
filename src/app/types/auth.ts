@@ -20,6 +20,13 @@ export interface Credentials {
 // 로그인 시 입력 타입
 export type LogInRequest = Credentials;
 
+// 로그인 후 응답 타입
+export interface LogInResponse {
+  isSuccess: boolean;
+  code: number;
+  message: string;
+}
+
 // 이메일 인증 입력 타입
 export interface VerifyEmailRequest {
   email: string;

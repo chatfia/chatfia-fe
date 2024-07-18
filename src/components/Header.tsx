@@ -1,7 +1,7 @@
 "use client";
 
 import { navigationStore } from "@/app/stores/navigationStore";
-import { useUserStore } from "@/app/stores/useUserStore";
+import { useAuthStore } from "@/app/stores/useAuthStore";
 import Link from "next/link";
 import Image from "next/image";
 import { CircleUserRound, DoorOpen } from "lucide-react";
@@ -9,7 +9,7 @@ import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
   const { clickedLink, setClickedLink } = navigationStore();
-  const { isLoggedIn, user, logOut } = useUserStore();
+  const { isLoggedIn, logOut } = useAuthStore();
 
   const handleLinkClick = (link: string) => {
     setClickedLink(link);
@@ -21,6 +21,10 @@ export default function Header() {
 
   const handleLogInClick = () => {
     setClickedLink(null);
+  };
+
+  const handleLogOutClick = () => {
+    logOut();
   };
 
   return (
@@ -79,11 +83,10 @@ export default function Header() {
             후원하기
           </Link>
         </div>
-        {isLoggedIn && user ? (
+        {isLoggedIn ? (
           <div className="flex items-center gap-4">
             <CircleUserRound className="text-white" />
-            <span>{user.email}</span>
-            <button onClick={logOut}>
+            <button onClick={handleLogOutClick}>
               <DoorOpen className="text-white" />
             </button>
           </div>
