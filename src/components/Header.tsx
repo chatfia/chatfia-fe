@@ -87,9 +87,11 @@ export default function Header() {
         </div>
         {isLoggedIn ? (
           <div className="flex items-center gap-4">
-            <CircleUserRound className="text-white" />
+            <Link href="/mypage">
+              <CircleUserRound className="h-8 w-8 cursor-pointer text-white duration-300 hover:text-red-400" />
+            </Link>
             <button onClick={handleLogOutClick}>
-              <DoorOpen className="text-white" />
+              <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
             </button>
           </div>
         ) : (
