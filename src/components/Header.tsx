@@ -2,6 +2,7 @@
 
 import { navigationStore } from "@/app/stores/navigationStore";
 import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useLogOut } from "@/app/hooks/useLogOut";
 import Link from "next/link";
 import Image from "next/image";
 import { CircleUserRound, DoorOpen } from "lucide-react";
@@ -9,7 +10,8 @@ import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
   const { clickedLink, setClickedLink } = navigationStore();
-  const { isLoggedIn, logOut } = useAuthStore();
+  const { isLoggedIn } = useAuthStore();
+  const logOutMutation = useLogOut();
 
   const handleLinkClick = (link: string) => {
     setClickedLink(link);
@@ -24,7 +26,7 @@ export default function Header() {
   };
 
   const handleLogOutClick = () => {
-    logOut();
+    logOutMutation.mutate();
   };
 
   return (
