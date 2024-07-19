@@ -1,13 +1,12 @@
 import { fetchExtended } from "@/app/apis/baseApi";
 import {
+  UserInfoResponse,
   LogInRequest,
-  LogInResponse,
   VerifyEmailRequest,
   VerifyCodeRequest,
   SignUpRequest,
   SignUpResponse,
 } from "@/app/types/auth";
-import { UserInfoResponse } from "@/app/types/auth";
 
 export const authApi = {
   // 회원정보 조회
@@ -19,16 +18,15 @@ export const authApi = {
   },
 
   // 로그인
-  logIn: async (logInUserData: LogInRequest): Promise<LogInResponse> => {
-    const response = await fetchExtended("/api/login", {
+  logIn: async (logInUserData: LogInRequest) => {
+    return fetchExtended("/api/login", {
       method: "POST",
       body: JSON.stringify(logInUserData),
     });
-    return await response.json();
   },
 
   // 로그아웃
-  logOut: () => {
+  logOut: async () => {
     return fetchExtended("/api/logout", {
       method: "POST",
     });
@@ -56,9 +54,6 @@ export const authApi = {
       method: "POST",
       body: JSON.stringify(signUpUserData),
     });
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return await (response.json() as Promise<SignUpResponse>);
+    return await response.json();
   },
 };
