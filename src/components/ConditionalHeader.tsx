@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 
 export default function ConditionalHeader() {
   const pathname = usePathname();
-  const isAuthPage = pathname.startsWith("/auth");
+  const isAuthOrMypage =
+    pathname.startsWith("/auth") || pathname.startsWith("/mypage");
 
-  return !isAuthPage ? <Header /> : null;
+  return !isAuthOrMypage ? <Header /> : null;
 }
