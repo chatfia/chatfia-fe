@@ -3,6 +3,9 @@
 import { navigationStore } from "@/app/stores/navigationStore";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogOut } from "@/app/hooks/useLogOut";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CircleUserRound, DoorOpen } from "lucide-react";
@@ -12,6 +15,8 @@ export default function Header() {
   const { clickedLink, setClickedLink } = navigationStore();
   const { isLoggedIn } = useAuthStore();
   const logOutMutation = useLogOut();
+  const router = useRouter();
+  const { toast } = useToast();
 
   const handleLinkClick = (link: string) => {
     setClickedLink(link);
@@ -28,6 +33,24 @@ export default function Header() {
   const handleLogOutClick = () => {
     logOutMutation.mutate();
   };
+
+  // 로그아웃 성공/실패 시 알림 처리
+  useEffect(() => {
+    if (logOutMutation.isSuccess) {
+      toast({
+        title: "로그아웃이 완료되었습니다.",
+        variant: "success",
+        duration: 3000,
+      });
+      router.push("/");
+    } else if (logOutMutation.isError) {
+      toast({
+        title: "로그아웃에 실패했습니다. 다시 시도해 주세요.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
