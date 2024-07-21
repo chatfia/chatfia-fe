@@ -6,11 +6,7 @@ import { Button } from "@/components/ui/button";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
-export const ImgWithTextAndBtns: React.FC<HomeProps> = ({
-  title,
-  text,
-  img,
-}) => {
+const ImgWithTextAndBtns: React.FC<HomeProps> = ({ title, text, img }) => {
   const router = useRouter();
 
   const handleNavigation = (link: string) => {
@@ -43,3 +39,5 @@ export const ImgWithTextAndBtns: React.FC<HomeProps> = ({
     </div>
   );
 };
+
+export default ImgWithTextAndBtns;
