@@ -1,5 +1,6 @@
 import "../../globals.css";
 import { Noto_Sans_KR } from "next/font/google";
+import MyPageHeader from "@/app/features/mypage/MyPageHeader";
 
 const notoSansKr = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -13,5 +14,10 @@ export default function MyPageLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className={`${notoSansKr.className}`}>{children}</div>;
+  return (
+    <div className={`${notoSansKr.className}`}>
+      <MyPageHeader />
+      {children}
+    </div>
+  );
 }
