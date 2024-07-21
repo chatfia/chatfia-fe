@@ -1,9 +1,8 @@
 "use client";
 
-import { navigationStore } from "@/app/stores/navigationStore";
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogOut } from "@/app/hooks/useLogOut";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -12,22 +11,14 @@ import { CircleUserRound, DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
-  const { clickedLink, setClickedLink } = navigationStore();
   const { isLoggedIn } = useAuthStore();
   const logOutMutation = useLogOut();
   const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
 
-  const handleLinkClick = (link: string) => {
-    setClickedLink(link);
-  };
-
   const handleHomeClick = () => {
-    setClickedLink(null);
-  };
-
-  const handleLogInClick = () => {
-    setClickedLink(null);
+    router.push("/");
   };
 
   const handleLogOutClick = () => {
@@ -52,60 +43,60 @@ export default function Header() {
     }
   }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
 
+  const isActiveLink = (link: string) => pathname === link;
+
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
       <div className="flex items-center justify-between gap-2 px-8 py-4">
-        <Link href="/" onClick={handleHomeClick}>
-          <div className="flex cursor-pointer gap-2">
-            <Image
-              src="/icons/logo.png"
-              alt="logo"
-              width={50}
-              height={50}
-              className="no-user-select no-user-drag"
-            />
-            <Image
-              src="/imgs/chatfia.png"
-              alt="chatfia"
-              width={130}
-              height={50}
-              className="no-user-select no-user-drag"
-            />
-          </div>
-        </Link>
+        <div onClick={handleHomeClick} className="flex cursor-pointer gap-2">
+          <Image
+            src="/icons/logo.png"
+            alt="logo"
+            width={50}
+            height={50}
+            className="no-user-select no-user-drag"
+          />
+          <Image
+            src="/imgs/chatfia.png"
+            alt="chatfia"
+            width={130}
+            height={50}
+            className="no-user-select no-user-drag"
+          />
+        </div>
         <div className="flex gap-20 text-xl">
-          <Link
-            href="/rule"
-            className={
-              clickedLink === "rule"
-                ? "text-red-400"
-                : "transform cursor-pointer transition hover:scale-110"
-            }
-            onClick={() => handleLinkClick("rule")}
-          >
-            게임설명
+          <Link href="/rule">
+            <div
+              className={
+                isActiveLink("/rule")
+                  ? "text-red-400"
+                  : "transform cursor-pointer transition hover:scale-110"
+              }
+            >
+              게임설명
+            </div>
           </Link>
-          <Link
-            href="/lobby"
-            className={
-              clickedLink === "lobby"
-                ? "text-red-400"
-                : "transform cursor-pointer transition hover:scale-110"
-            }
-            onClick={() => handleLinkClick("lobby")}
-          >
-            게임로비
+          <Link href="/lobby">
+            <div
+              className={
+                isActiveLink("/lobby")
+                  ? "text-red-400"
+                  : "transform cursor-pointer transition hover:scale-110"
+              }
+            >
+              게임로비
+            </div>
           </Link>
-          <Link
-            href="/donation"
-            className={
-              clickedLink === "donation"
-                ? "text-red-400"
-                : "transform cursor-pointer transition hover:scale-110"
-            }
-            onClick={() => handleLinkClick("donation")}
-          >
-            후원하기
+          <Link href="/donation">
+            <div
+              className={
+                isActiveLink("/donation")
+                  ? "text-red-400"
+                  : "transform cursor-pointer transition hover:scale-110"
+              }
+            >
+              후원하기
+            </div>
           </Link>
         </div>
         {isLoggedIn ? (
@@ -118,7 +109,7 @@ export default function Header() {
             </button>
           </div>
         ) : (
-          <LogInBtn onClick={handleLogInClick} />
+          <LogInBtn />
         )}
       </div>
     </header>
