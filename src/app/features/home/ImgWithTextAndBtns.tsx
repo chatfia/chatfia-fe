@@ -1,5 +1,3 @@
-"use client";
-
 import { HomeProps } from "@/app/types/home";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";

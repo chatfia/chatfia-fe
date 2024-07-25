@@ -1,13 +1,7 @@
-import dynamic from "next/dynamic";
 import { ImgWithTextLeft } from "@/app/features/home/ImgWithTextLeft";
 import { ImgWithTextRight } from "@/app/features/home/ImgWithTextRight";
 import { KeyFeatures } from "@/app/features/home/KeyFeatures";
-
-// 동적 import를 사용하여 컴포넌트를 클라이언트 사이드에서만 렌더링하도록 설정
-const ImgWithTextAndBtns = dynamic(
-  () => import("@/app/features/home/ImgWithTextAndBtns"),
-  { ssr: false },
-);
+import ImgWithTextAndBtns from "@/app/features/home/ImgWithTextAndBtns";
 
 const Home: React.FC = () => {
   return (
