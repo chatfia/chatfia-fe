@@ -48,7 +48,7 @@ export default function Header() {
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
-      <div className="flex items-center justify-between gap-2 px-8 py-4">
+      <div className="flex items-center justify-between px-8 py-4">
         <div onClick={handleHomeClick} className="flex cursor-pointer gap-2">
           <Image
             src="/icons/logo.png"
@@ -66,38 +66,35 @@ export default function Header() {
           />
         </div>
         <div className="flex gap-20 text-xl">
-          <Link href="/rule">
-            <div
-              className={
-                isActiveLink("/rule")
-                  ? "text-red-400"
-                  : "transform cursor-pointer transition hover:scale-110"
-              }
-            >
-              게임설명
-            </div>
+          <Link
+            href="/rule"
+            className={
+              isActiveLink("/rule")
+                ? "text-red-400"
+                : "transform cursor-pointer transition hover:scale-110"
+            }
+          >
+            게임설명
           </Link>
-          <Link href="/lobby">
-            <div
-              className={
-                isActiveLink("/lobby")
-                  ? "text-red-400"
-                  : "transform cursor-pointer transition hover:scale-110"
-              }
-            >
-              게임로비
-            </div>
+          <Link
+            href="/lobby"
+            className={
+              isActiveLink("/lobby")
+                ? "text-red-400"
+                : "transform cursor-pointer transition hover:scale-110"
+            }
+          >
+            게임로비
           </Link>
-          <Link href="/donation">
-            <div
-              className={
-                isActiveLink("/donation")
-                  ? "text-red-400"
-                  : "transform cursor-pointer transition hover:scale-110"
-              }
-            >
-              후원하기
-            </div>
+          <Link
+            href="/donation"
+            className={
+              isActiveLink("/donation")
+                ? "text-red-400"
+                : "transform cursor-pointer transition hover:scale-110"
+            }
+          >
+            후원하기
           </Link>
         </div>
         {isLoggedIn ? (

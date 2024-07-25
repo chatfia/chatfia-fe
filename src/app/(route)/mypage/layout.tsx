@@ -15,9 +15,11 @@ export default function MyPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${notoSansKr.className}`}>
-      <MyPageHeader />
-      {children}
+    <div className={`${notoSansKr.className} flex justify-center`}>
+      <div className="w-full max-w-5xl">
+        <MyPageHeader />
+        {children}
+      </div>
     </div>
   );
 }
