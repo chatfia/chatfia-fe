@@ -1,11 +1,10 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function MyPageHeader() {
-  const router = useRouter();
-  const { pathname } = router;
+  const pathname = usePathname();
 
   const isActiveLink = (link: string) => pathname === link;
 

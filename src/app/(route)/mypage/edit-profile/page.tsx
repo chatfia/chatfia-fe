@@ -1,9 +1,7 @@
-import MyPageLayout from "../layout";
-
 export default function EditProfilePage() {
   return (
-    <MyPageLayout>
+    <div>
       <div>Edit Profile Content Here</div>
-    </MyPageLayout>
+    </div>
   );
 }
