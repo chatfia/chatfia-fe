@@ -1,3 +1,5 @@
+"use client";
+
 import { ImgWithTextLeft } from "@/app/features/home/ImgWithTextLeft";
 import { ImgWithTextRight } from "@/app/features/home/ImgWithTextRight";
 import { KeyFeatures } from "@/app/features/home/KeyFeatures";
