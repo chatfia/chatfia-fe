@@ -1,3 +1,9 @@
-export default function Profile() {
-  return <div>Profile Page</div>;
+import MyPageLayout from "../layout";
+
+export default function ProfilePage() {
+  return (
+    <MyPageLayout>
+      <div>Profile Content Here</div>
+    </MyPageLayout>
+  );
 }
