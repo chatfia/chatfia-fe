@@ -7,7 +7,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { CircleUserRound, DoorOpen } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
@@ -102,7 +103,10 @@ export default function Header() {
         {isLoggedIn ? (
           <div className="flex items-center gap-4">
             <Link href="/mypage">
-              <CircleUserRound className="h-8 w-8 cursor-pointer text-white duration-300 hover:text-red-400" />
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>ID</AvatarFallback>
+              </Avatar>
             </Link>
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
