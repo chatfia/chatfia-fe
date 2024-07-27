@@ -1,27 +1,30 @@
+import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useQuery } from "@tanstack/react-query";
-import { authApi } from "@/app/apis/authApi";
 import { UserInfoResponse } from "@/app/apis/types/auth";
-import { useUserInfoStore } from "@/app/stores/useUserInfoStore";
+import { authApi } from "@/app/apis/authApi";
+import { useEffect } from "react";
 
 export const useUserInfo = () => {
-  const { isSuccess, setUserInfo } = useUserInfoStore();
-  console.log(isSuccess);
+  const isSuccess = useAuthStore((state) => state.isSuccess);
+  const setUserInfo = useAuthStore((state) => state.setUserInfo);
 
-  const { data, error, isLoading } = useQuery<UserInfoResponse>({
+  const query = useQuery<UserInfoResponse, Error>({
     queryKey: ["userInfo"],
-    queryFn: async () => {
-      const data = await authApi.getUserInfo();
-      setUserInfo(data); // 상태 업데이트
-      return data;
-    },
+    queryFn: authApi.getUserInfo,
     enabled: isSuccess, // isSuccess가 true일 때만 쿼리 실행
-    retry: false,
-    staleTime: 1000 * 60 * 5, // 데이터가 5분 동안 신선한 상태로 유지
   });
 
-  return {
-    userInfo: data ?? null,
-    error,
-    isLoading,
-  };
+  useEffect(() => {
+    if (query.isSuccess && query.data) {
+      setUserInfo(query.data);
+    }
+  }, [query.isSuccess, query.data, setUserInfo]);
+
+  useEffect(() => {
+    if (query.isError && query.error) {
+      console.error("회원정보 조회 API 호출 중 에러 발생:", query.error);
+    }
+  }, [query.isError, query.error]);
+
+  return query;
 };

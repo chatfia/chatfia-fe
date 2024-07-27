@@ -2,23 +2,21 @@ import { create } from "zustand";
 import { UserInfoResponse } from "@/app/apis/types/auth";
 
 interface AuthState {
-  isLoggedIn: boolean;
+  isSuccess: boolean;
+  setIsSuccess: (isSuccess: boolean) => void;
   logIn: () => void;
   logOut: () => void;
   userInfo: UserInfoResponse | null;
   setUserInfo: (userInfo: UserInfoResponse) => void;
+  clearUserInfo: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  isLoggedIn: false,
+  isSuccess: false,
+  setIsSuccess: (isSuccess) => set({ isSuccess }),
+  logIn: () => set({ isSuccess: true }),
+  logOut: () => set({ isSuccess: false, userInfo: null }),
   userInfo: null,
-  logIn: () => {
-    set({ isLoggedIn: true });
-  },
-  logOut: () => {
-    set({ isLoggedIn: false, userInfo: null });
-  },
-  setUserInfo: (userInfo: UserInfoResponse) => {
-    set({ userInfo });
-  },
+  setUserInfo: (userInfo) => set({ userInfo }),
+  clearUserInfo: () => set({ isSuccess: false, userInfo: null }),
 }));
