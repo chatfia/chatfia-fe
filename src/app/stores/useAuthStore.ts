@@ -20,3 +20,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   setUserInfo: (userInfo) => set({ userInfo }),
   clearUserInfo: () => set({ isSuccess: false, userInfo: null }),
 }));
+
+// 상태 변경 시 콘솔 출력
+useAuthStore.subscribe((state) => {
+  console.log("AuthStore State:", state);
+});

@@ -10,11 +10,20 @@ import {
 
 export const authApi = {
   // 회원정보 조회
+  // getUserInfo: async (): Promise<UserInfoResponse> => {
+  //   const response = await fetchExtended("/api/info", {
+  //     method: "GET",
+  //   });
+  //   return response.json();
+  // },
+
   getUserInfo: async (): Promise<UserInfoResponse> => {
     const response = await fetchExtended("/api/info", {
       method: "GET",
     });
-    return response.json();
+    const data = await response.json();
+    console.log("API Response Data:", data); // API 응답 로그 출력
+    return data;
   },
 
   // 로그인
