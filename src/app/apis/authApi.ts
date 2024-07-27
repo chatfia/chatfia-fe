@@ -10,28 +10,11 @@ import {
 
 export const authApi = {
   // 회원정보 조회
-  // getUserInfo: async (): Promise<UserInfoResponse> => {
-  //   const response = await fetchExtended("/api/info", {
-  //     method: "GET",
-  //   });
-  //   return response.json();
-  // },
-
-  // 회원정보 조회
   getUserInfo: async (): Promise<UserInfoResponse> => {
     const response = await fetchExtended("/api/info", {
       method: "GET",
     });
-
-    // 응답이 JSON 형식인지 확인
-    if (response.headers.get("content-type")?.includes("application/json")) {
-      const data = await response.json();
-      console.log("API response data in authApi.getUserInfo:", data); // 콘솔 로그 추가
-      return data;
-    } else {
-      console.error("응답이 JSON 형식이 아닙니다:", response);
-      throw new Error("Invalid response type");
-    }
+    return response.json();
   },
 
   // 로그인

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 export const useUserInfo = () => {
   const isSuccess = useAuthStore((state) => state.isSuccess);
+  const userInfo = useAuthStore((state) => state.userInfo);
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
 
   const query = useQuery<UserInfoResponse, Error>({
@@ -16,10 +17,9 @@ export const useUserInfo = () => {
 
   useEffect(() => {
     if (query.isSuccess && query.data) {
-      console.log("Fetched user data in useUserInfo:", query.data);
       setUserInfo(query.data);
     }
   }, [query.isSuccess, query.data, setUserInfo]);
 
-  return query;
+  return { userInfo, fetchUserInfo: query.refetch };
 };
