@@ -13,12 +13,12 @@ import { DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
-  const { isSuccess } = useAuthStore();
+  const { isSuccess, userInfo } = useAuthStore();
   const logOutMutation = useLogOut();
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { userInfo, fetchUserInfo } = useUserInfo();
+  const { fetchUserInfo } = useUserInfo();
 
   const handleHomeClick = () => {
     router.push("/");
