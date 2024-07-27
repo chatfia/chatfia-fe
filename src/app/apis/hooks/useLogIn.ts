@@ -11,7 +11,6 @@ export const useLogIn = () => {
     mutationFn: authApi.logIn,
     onSuccess: (response: any) => {
       const isSuccess = response?.isSuccess;
-      console.log(isSuccess);
       if (isSuccess) {
         logIn();
         setIsSuccess(isSuccess);
