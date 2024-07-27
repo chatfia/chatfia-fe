@@ -14,13 +14,6 @@ export const authApi = {
     const response = await fetchExtended("/api/info", {
       method: "GET",
     });
-
-    // response가 실제로 Response 객체인지 확인
-    if (!(response instanceof Response)) {
-      console.error("Response is not an instance of Response:", response);
-      throw new Error("Invalid response type");
-    }
-
     return response.json();
   },
 
