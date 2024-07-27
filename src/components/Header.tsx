@@ -46,11 +46,11 @@ export default function Header() {
     }
   }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
 
+  const isActiveLink = (link: string) => pathname === link;
+
   useEffect(() => {
     console.log("User Info:", userInfo);
   }, [userInfo]);
-
-  const isActiveLink = (link: string) => pathname === link;
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
