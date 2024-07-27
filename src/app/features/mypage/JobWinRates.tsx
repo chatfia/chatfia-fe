@@ -21,7 +21,7 @@ const chartData = [
 const chartConfig = {
   winRate: {
     label: "승률",
-    color: "#047857",
+    color: "#F87171",
   },
   usageRate: {
     label: "사용률",

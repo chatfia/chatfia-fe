@@ -1,4 +1,4 @@
-import { GameRoomCommandProps } from "@/app/types/lobby";
+import { GameRoomCommandProps } from "@/app/apis/types/lobby";
 import { Search } from "lucide-react";
 
 export const GameRoomCommand: React.FC<GameRoomCommandProps> = ({

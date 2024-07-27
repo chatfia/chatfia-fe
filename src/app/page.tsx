@@ -4,10 +4,15 @@ import { ImgWithTextLeft } from "@/app/features/home/ImgWithTextLeft";
 import { ImgWithTextRight } from "@/app/features/home/ImgWithTextRight";
 import { KeyFeatures } from "@/app/features/home/KeyFeatures";
 import ImgWithTextAndBtns from "@/app/features/home/ImgWithTextAndBtns";
+import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
+import { UserInfoResponse } from "@/app/apis/types/auth";
 
 const Home: React.FC = () => {
+  const { userInfo, error, isLoading } = useUserInfo();
+
   return (
     <>
+      {userInfo && <UserInfoDisplay userInfo={userInfo} />}
       <ImgWithTextLeft
         title="마피아게임 좋아하시나요?"
         text="Do you like Mafia games?"
@@ -40,6 +45,27 @@ const Home: React.FC = () => {
       />
       <KeyFeatures />
     </>
+  );
+};
+
+const UserInfoDisplay = ({
+  userInfo,
+}: {
+  userInfo: UserInfoResponse | null;
+}) => {
+  if (!userInfo) {
+    return <p>회원정보를 불러오는 중...</p>;
+  }
+
+  return (
+    <div className="mt-4">
+      <p>
+        <strong>닉네임:</strong> {userInfo.nickname}
+      </p>
+      <p>
+        <strong>이메일:</strong> {userInfo.email}
+      </p>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuthStore } from "@/app/stores/useAuthStore";
-import { useLogOut } from "@/app/hooks/useLogOut";
+import { useLogOut } from "@/app/apis/hooks/useLogOut";
 import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";

@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { signUpSchema } from "@/app/validators/auth";
-import { AuthFormProps } from "@/app/types/auth";
+import { AuthFormProps } from "@/app/apis/types/auth";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSignUp } from "@/app/hooks/useSignUp";
+import { useSignUp } from "@/app/apis/hooks/useSignUp";
 import { useEffect } from "react";
 import {
   Form,

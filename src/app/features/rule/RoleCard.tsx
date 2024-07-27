@@ -1,4 +1,4 @@
-import { RoleCardProps } from "@/app/types/rule";
+import { RoleCardProps } from "@/app/apis/types/rule";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 

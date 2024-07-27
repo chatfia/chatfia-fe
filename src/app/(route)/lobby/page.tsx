@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GameRoomProps } from "@/app/types/lobby";
+import { GameRoomProps } from "@/app/apis/types/lobby";
 import { GameRoomDialog } from "@/app/features/lobby/GameRoomDialog";
 import { GameRoomCommand } from "@/app/features/lobby/GameRoomCommand";
 import { GameRoom } from "@/app/features/lobby/GameRoom";
