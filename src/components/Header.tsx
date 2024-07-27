@@ -18,7 +18,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { data: userInfo } = useUserInfo();
+  const { userInfo, fetchUserInfo } = useUserInfo();
 
   const handleHomeClick = () => {
     router.push("/");
@@ -48,9 +48,12 @@ export default function Header() {
 
   const isActiveLink = (link: string) => pathname === link;
 
+  // isSuccess 상태가 true일 때 회원정보 조회 함수 호출
   useEffect(() => {
-    console.log("User Info:", userInfo);
-  }, [userInfo]);
+    if (isSuccess) {
+      fetchUserInfo();
+    }
+  }, [isSuccess, fetchUserInfo]);
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
