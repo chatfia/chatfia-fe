@@ -55,6 +55,10 @@ export default function Header() {
     }
   }, [isSuccess, fetchUserInfo]);
 
+  useEffect(() => {
+    console.log("User Info in Header:", userInfo);
+  }, [userInfo]);
+
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
       <div className="flex items-center justify-between px-8 py-4">

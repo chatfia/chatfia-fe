@@ -17,9 +17,14 @@ export const useUserInfo = () => {
 
   useEffect(() => {
     if (query.isSuccess && query.data) {
+      console.log("Fetched User Info:", query.data); // Fetched data log
       setUserInfo(query.data);
     }
   }, [query.isSuccess, query.data, setUserInfo]);
+
+  useEffect(() => {
+    console.log("Updated User Info:", userInfo); // Updated state log
+  }, [userInfo]);
 
   return { userInfo, fetchUserInfo: query.refetch };
 };
