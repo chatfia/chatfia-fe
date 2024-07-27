@@ -14,7 +14,7 @@ export const authApi = {
     const response = await fetchExtended("/api/info", {
       method: "GET",
     });
-    return response.json();
+    return await response.json();
   },
 
   // 로그인
