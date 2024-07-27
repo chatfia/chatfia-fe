@@ -18,7 +18,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { data: userInfo } = useUserInfo();
+  const { data: userInfo, fetchUserInfo } = useUserInfo();
 
   const handleHomeClick = () => {
     router.push("/");
@@ -45,6 +45,13 @@ export default function Header() {
       });
     }
   }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
+
+  // isSuccess 상태가 true일 때 회원정보 조회 함수 호출
+  useEffect(() => {
+    if (isSuccess) {
+      fetchUserInfo();
+    }
+  }, [isSuccess, fetchUserInfo]);
 
   const isActiveLink = (link: string) => pathname === link;
 
@@ -106,7 +113,7 @@ export default function Header() {
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
-              {userInfo?.nickname}
+              <span>{userInfo?.nickname}</span>
             </Link>
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
