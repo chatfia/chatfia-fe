@@ -1,4 +1,4 @@
-import { HomeProps } from "@/app/types/home";
+import { HomeProps } from "@/app/apis/types/home";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 

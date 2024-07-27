@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { UserInfoResponse } from "@/app/types/auth";
+import { UserInfoResponse } from "@/app/apis/types/auth";
 
 interface AuthState {
   isLoggedIn: boolean;

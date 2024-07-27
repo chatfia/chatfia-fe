@@ -3,9 +3,9 @@ import { signUpSchema } from "@/app/validators/auth";
 import { useToast } from "@/components/ui/use-toast";
 import { useFormContext } from "react-hook-form";
 import { useState, useEffect } from "react";
-import { VerifyEmailRequest, VerifyCodeRequest } from "@/app/types/auth";
-import { useVerifyEmail } from "@/app/hooks/useVerifyEmail";
-import { useVerifyCode } from "@/app/hooks/useVerifyCode";
+import { VerifyEmailRequest, VerifyCodeRequest } from "@/app/apis/types/auth";
+import { useVerifyEmail } from "@/app/apis/hooks/useVerifyEmail";
+import { useVerifyCode } from "@/app/apis/hooks/useVerifyCode";
 import {
   FormField,
   FormItem,

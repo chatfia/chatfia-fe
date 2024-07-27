@@ -1,6 +1,6 @@
 "use client";
 
-import { GameRoomDialogProps } from "@/app/types/lobby";
+import { GameRoomDialogProps } from "@/app/apis/types/lobby";
 import { useState } from "react";
 import {
   Dialog,

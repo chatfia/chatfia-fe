@@ -1,4 +1,4 @@
-import { GameRoomProps } from "@/app/types/lobby";
+import { GameRoomProps } from "@/app/apis/types/lobby";
 import { useState } from "react";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";

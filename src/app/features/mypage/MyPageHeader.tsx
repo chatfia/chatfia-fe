@@ -45,9 +45,9 @@ export default function MyPageHeader() {
             내프로필
           </Link>
           <Link
-            href="/mypage/edit-profile"
+            href="/mypage/job-win-rates"
             className={
-              isActiveLink("/mypage/edit-profile")
+              isActiveLink("/mypage/job-win-rates")
                 ? "text-red-400"
                 : "transform cursor-pointer transition hover:scale-110"
             }

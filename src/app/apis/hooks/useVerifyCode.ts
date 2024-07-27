@@ -1,4 +1,4 @@
-import { VerifyCodeRequest } from "@/app/types/auth";
+import { VerifyCodeRequest } from "@/app/apis/types/auth";
 import { useQuery } from "@tanstack/react-query";
 import { authApi } from "@/app/apis/authApi";
 

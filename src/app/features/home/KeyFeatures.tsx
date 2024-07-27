@@ -1,4 +1,4 @@
-import { FeatureItemProps } from "@/app/types/home";
+import { FeatureItemProps } from "@/app/apis/types/home";
 import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 import Link from "next/link";

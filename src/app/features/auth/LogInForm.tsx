@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { logInSchema } from "@/app/validators/auth";
-import { AuthFormProps } from "@/app/types/auth";
+import { AuthFormProps } from "@/app/apis/types/auth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLogIn } from "@/app/hooks/useLogIn";
+import { useLogIn } from "@/app/apis/hooks/useLogIn";
 import { useEffect } from "react";
 import {
   Form,

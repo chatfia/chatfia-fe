@@ -6,7 +6,7 @@ import {
   VerifyCodeRequest,
   SignUpRequest,
   SignUpResponse,
-} from "@/app/types/auth";
+} from "@/app/apis/types/auth";
 
 export const authApi = {
   // 회원정보 조회
@@ -14,15 +14,16 @@ export const authApi = {
     const response = await fetchExtended("/api/info", {
       method: "GET",
     });
-    return await response.json();
+    return response.json();
   },
 
   // 로그인
   logIn: async (logInUserData: LogInRequest) => {
-    return fetchExtended("/api/login", {
+    const response = await fetchExtended("/api/login", {
       method: "POST",
       body: JSON.stringify(logInUserData),
     });
+    return response;
   },
 
   // 로그아웃
@@ -54,6 +55,6 @@ export const authApi = {
       method: "POST",
       body: JSON.stringify(signUpUserData),
     });
-    return await response.json();
+    return response.json();
   },
 };
