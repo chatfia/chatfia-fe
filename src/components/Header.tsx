@@ -46,6 +46,10 @@ export default function Header() {
     }
   }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
 
+  useEffect(() => {
+    console.log("User Info:", userInfo);
+  }, [userInfo]);
+
   const isActiveLink = (link: string) => pathname === link;
 
   return (
