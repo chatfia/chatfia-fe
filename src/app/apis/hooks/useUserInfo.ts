@@ -20,11 +20,11 @@ export const useUserInfo = () => {
     }
   }, [query.isSuccess, query.data, setUserInfo]);
 
-  useEffect(() => {
-    if (query.isError && query.error) {
-      console.error("회원정보 조회 API 호출 중 에러 발생:", query.error);
-    }
-  }, [query.isError, query.error]);
+  // useEffect(() => {
+  //   if (query.isError && query.error) {
+  //     console.error("회원정보 조회 API 호출 중 에러 발생:", query.error);
+  //   }
+  // }, [query.isError, query.error]);
 
   return query;
 };
