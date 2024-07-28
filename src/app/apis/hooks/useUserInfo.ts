@@ -21,5 +21,12 @@ export const useUserInfo = () => {
     }
   }, [query.isSuccess, query.data, setUserInfo]);
 
+  // isSuccess 상태가 true일 때 회원정보 조회 함수 호출
+  useEffect(() => {
+    if (isSuccess) {
+      query.refetch();
+    }
+  }, [isSuccess, query]);
+
   return { userInfo, fetchUserInfo: query.refetch };
 };
