@@ -13,12 +13,12 @@ import { DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
-  const { isSuccess, userInfo } = useAuthStore();
+  const { isSuccess } = useAuthStore();
   const logOutMutation = useLogOut();
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { fetchUserInfo } = useUserInfo();
+  const { userInfo, fetchUserInfo } = useUserInfo();
 
   const handleHomeClick = () => {
     router.push("/");
@@ -54,10 +54,6 @@ export default function Header() {
       fetchUserInfo();
     }
   }, [isSuccess, fetchUserInfo]);
-
-  useEffect(() => {
-    console.log("User Info in Header:", userInfo);
-  }, [userInfo]);
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
@@ -117,7 +113,8 @@ export default function Header() {
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
-              <span>{userInfo?.nickname}</span>
+              <span>{userInfo?.nickname || "Loading..."}</span>
+              <button onClick={() => fetchUserInfo()}>Refresh</button>
             </Link>
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
