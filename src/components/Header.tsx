@@ -13,7 +13,8 @@ import { DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 
 export default function Header() {
-  const { isSuccess } = useAuthStore();
+  // const { isSuccess } = useAuthStore();
+  const isSuccess = useAuthStore((state) => state.isSuccess);
   const logOutMutation = useLogOut();
   const router = useRouter();
   const pathname = usePathname();
@@ -114,7 +115,6 @@ export default function Header() {
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
               <span>{userInfo?.nickname || "Loading..."}</span>
-              <button onClick={() => fetchUserInfo()}>Refresh</button>
             </Link>
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
