@@ -18,7 +18,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { userInfo, fetchUserInfo } = useUserInfo();
+  const userInfo = useUserInfo().userInfo;
 
   const handleHomeClick = () => {
     router.push("/");
