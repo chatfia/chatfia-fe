@@ -15,12 +15,8 @@ export const useUserInfo = () => {
     enabled: isSuccess, // isSuccess가 true일 때만 쿼리 실행
   });
 
-  // 쿼리 상태와 데이터 로그 추가
-  console.log("Query Status:", query);
-
   useEffect(() => {
     if (query.isSuccess && query.data) {
-      console.log("Setting UserInfo:", query.data);
       setUserInfo(query.data);
     }
   }, [query.isSuccess, query.data, setUserInfo]);
