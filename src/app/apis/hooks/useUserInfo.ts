@@ -28,5 +28,5 @@ export const useUserInfo = () => {
     }
   }, [isSuccess, query]);
 
-  return { userInfo, fetchUserInfo: query.refetch };
+  return { userInfo };
 };
