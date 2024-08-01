@@ -1,32 +1,25 @@
-import { useAuthStore } from "@/app/stores/useAuthStore";
-import { useQuery } from "@tanstack/react-query";
+import { useUserStore } from "@/app/stores/useUserStore";
+import { useQuery, QueryFunction } from "@tanstack/react-query";
 import { UserInfoResponse } from "@/app/apis/types/auth";
 import { authApi } from "@/app/apis/authApi";
-import { useEffect } from "react";
 
 export const useUserInfo = () => {
-  const isSuccess = useAuthStore((state) => state.isSuccess);
-  const userInfo = useAuthStore((state) => state.userInfo);
-  const setUserInfo = useAuthStore((state) => state.setUserInfo);
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
 
-  const query = useQuery<UserInfoResponse, Error>({
+  const fetchUserInfo: QueryFunction<UserInfoResponse> = async () => {
+    const response = await authApi.checkAuth();
+    const data: UserInfoResponse = await response.json();
+
+    if (data.loggedIn) {
+      setUserInfo(data);
+      return data;
+    } else {
+      throw new Error("로그인 정보가 없습니다");
+    }
+  };
+
+  return useQuery<UserInfoResponse, Error>({
     queryKey: ["userInfo"],
-    queryFn: authApi.getUserInfo,
-    enabled: isSuccess, // isSuccess가 true일 때만 쿼리 실행
+    queryFn: fetchUserInfo,
   });
-
-  useEffect(() => {
-    if (query.isSuccess && query.data) {
-      setUserInfo(query.data);
-    }
-  }, [query.isSuccess, query.data, setUserInfo]);
-
-  // isSuccess 상태가 true일 때 회원정보 조회 함수 호출
-  useEffect(() => {
-    if (isSuccess) {
-      query.refetch();
-    }
-  }, [isSuccess, query]);
-
-  return { userInfo };
 };
