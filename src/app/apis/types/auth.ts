@@ -4,13 +4,6 @@ export interface AuthFormProps {
   setStep: (step: number) => void; // 단계 설정 함수
 }
 
-// 회원정보 조회, 닉네임 변경 응답 타입
-export interface UserInfoResponse {
-  id: number;
-  email: string;
-  nickname: string;
-}
-
 // 회원가입 및 로그인 시 공통 입력 타입
 export interface Credentials {
   email: string;
@@ -25,6 +18,23 @@ export interface LogInResponse {
   isSuccess: boolean;
   code: number;
   message: string;
+}
+
+// 로그인 후 정보 조회
+export interface UserInfoResponse {
+  loggedIn: boolean;
+  nickname: string;
+  email: string;
+  wins: 10;
+  losses: 5;
+  mafiaWins: 3;
+  mafiaLosses: 2;
+  policeWins: 2;
+  policeLosses: 1;
+  doctorWins: 1;
+  doctorLosses: 0;
+  citizenWins: 4;
+  citizenLosses: 2;
 }
 
 // 이메일 인증 입력 타입

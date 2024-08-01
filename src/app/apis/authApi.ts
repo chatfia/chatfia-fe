@@ -9,21 +9,19 @@ import {
 } from "@/app/apis/types/auth";
 
 export const authApi = {
-  // 회원정보 조회
-  getUserInfo: async (): Promise<UserInfoResponse> => {
-    const response = await fetchExtended("/api/info", {
-      method: "GET",
-    });
-    return response.json();
-  },
-
   // 로그인
   logIn: async (logInUserData: LogInRequest) => {
-    const response = await fetchExtended("/api/login", {
+    return await fetchExtended("/api/login", {
       method: "POST",
       body: JSON.stringify(logInUserData),
     });
-    return response;
+  },
+
+  // 로그인 후 정보
+  checkAuth: async () => {
+    return fetchExtended("/api/auth/check", {
+      method: "GET",
+    });
   },
 
   // 로그아웃

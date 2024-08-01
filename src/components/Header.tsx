@@ -18,7 +18,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const userInfo = useUserInfo().userInfo;
+  const { data: userInfo } = useUserInfo();
 
   const handleHomeClick = () => {
     router.push("/");
@@ -107,7 +107,7 @@ export default function Header() {
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
             </Link>
-            <span>{userInfo?.nickname || "Loading..."}</span>
+            <p>{userInfo?.nickname}</p>
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
             </button>
