@@ -1,14 +1,13 @@
 import { create } from "zustand";
-import { UserInfoResponse } from "@/app/apis/types/auth";
 
 interface UserState {
-  userInfo: UserInfoResponse | null;
-  setUserInfo: (userInfo: UserInfoResponse) => void;
-  clearUserInfo: () => void;
+  nickname: string | null;
+  email: string | null;
+  setUserInfo: (nickname: string, email: string) => void;
 }
 
 export const useUserStore = create<UserState>((set) => ({
-  userInfo: null,
-  setUserInfo: (userInfo) => set({ userInfo }),
-  clearUserInfo: () => set({ userInfo: null }),
+  nickname: null,
+  email: null,
+  setUserInfo: (nickname, email) => set({ nickname, email }),
 }));

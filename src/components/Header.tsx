@@ -4,6 +4,7 @@ import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogOut } from "@/app/apis/hooks/useLogOut";
 import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { useUserStore } from "@/app/stores/useUserStore";
 import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -18,17 +19,9 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { data: userInfo } = useUserInfo();
+  const { nickname } = useUserStore();
+  const { isLoading, isError } = useUserInfo();
 
-  const handleHomeClick = () => {
-    router.push("/");
-  };
-
-  const handleLogOutClick = () => {
-    logOutMutation.mutate();
-  };
-
-  // 로그아웃 성공/실패 시 알림 처리
   useEffect(() => {
     if (logOutMutation.isSuccess) {
       toast({
@@ -45,6 +38,17 @@ export default function Header() {
       });
     }
   }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error loading user information</p>;
+
+  const handleHomeClick = () => {
+    router.push("/");
+  };
+
+  const handleLogOutClick = () => {
+    logOutMutation.mutate();
+  };
 
   const isActiveLink = (link: string) => pathname === link;
 
@@ -107,7 +111,7 @@ export default function Header() {
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
             </Link>
-            <p>{userInfo?.nickname}</p>
+            <p>{nickname}</p>
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
             </button>
