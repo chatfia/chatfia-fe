@@ -22,6 +22,7 @@ export default function Header() {
   const { nickname } = useUserStore();
   const { isLoading, isError } = useUserInfo();
 
+  // 로그아웃 성공/실패 시 알림 처리
   useEffect(() => {
     if (logOutMutation.isSuccess) {
       toast({
@@ -38,9 +39,6 @@ export default function Header() {
       });
     }
   }, [logOutMutation.isSuccess, logOutMutation.isError, router, toast]);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error loading user information</p>;
 
   const handleHomeClick = () => {
     router.push("/");
@@ -111,7 +109,13 @@ export default function Header() {
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
             </Link>
-            <p>{nickname}</p>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : isError ? (
+              <p>Error</p>
+            ) : (
+              <p>{nickname}</p>
+            )}
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
             </button>
