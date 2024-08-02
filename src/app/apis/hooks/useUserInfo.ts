@@ -1,25 +1,22 @@
 import { useUserStore } from "@/app/stores/useUserStore";
-import { useQuery, QueryFunction } from "@tanstack/react-query";
-import { UserInfoResponse } from "@/app/apis/types/auth";
+import { useQuery } from "@tanstack/react-query";
 import { authApi } from "@/app/apis/authApi";
 
 export const useUserInfo = () => {
   const setUserInfo = useUserStore((state) => state.setUserInfo);
 
-  const fetchUserInfo: QueryFunction<UserInfoResponse> = async () => {
-    const response = await authApi.checkAuth();
-    const data: UserInfoResponse = await response.json();
-
-    if (data.loggedIn) {
-      setUserInfo(data);
-      return data;
-    } else {
-      throw new Error("로그인 정보가 없습니다");
-    }
-  };
-
-  return useQuery<UserInfoResponse, Error>({
+  return useQuery({
     queryKey: ["userInfo"],
-    queryFn: fetchUserInfo,
+    queryFn: async () => {
+      const response = await authApi.checkAuth();
+      const data = await response.json();
+
+      if (data.loggedIn) {
+        setUserInfo(data.nickname, data.email);
+        return data;
+      } else {
+        throw new Error("로그인 정보를 불러오는데 실패했습니다.");
+      }
+    },
   });
 };
