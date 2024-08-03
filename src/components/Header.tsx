@@ -4,7 +4,6 @@ import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useLogOut } from "@/app/apis/hooks/useLogOut";
 import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import { useUserStore } from "@/app/stores/useUserStore";
 import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -19,8 +18,9 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
-  const { nickname } = useUserStore();
-  const { isLoading, isError } = useUserInfo();
+
+  // useUserInfo 훅을 항상 호출
+  const { isLoading, isError, data } = useUserInfo();
 
   // 로그아웃 성공/실패 시 알림 처리
   useEffect(() => {
@@ -49,6 +49,16 @@ export default function Header() {
   };
 
   const isActiveLink = (link: string) => pathname === link;
+
+  // 로딩 중이거나 에러가 발생했을 때의 처리
+  let content;
+  if (isLoading) {
+    content = <p>Loading...</p>;
+  } else if (isError || !isSuccess) {
+    content = <p>Error</p>;
+  } else {
+    content = <p>{data?.nickname}</p>;
+  }
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
@@ -109,13 +119,7 @@ export default function Header() {
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
             </Link>
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : isError ? (
-              <p>Error</p>
-            ) : (
-              <p>{nickname}</p>
-            )}
+            {content}
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
             </button>
