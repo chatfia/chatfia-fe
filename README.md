@@ -1,4 +1,5 @@
 # 🔫 Chatfia
+
 팀 프로젝트
 
 [Project Notion](https://hiryuji.notion.site/Chatfia-099fa11562af47ff88208c03db710f3b)
@@ -22,6 +23,7 @@ BE - Java 17, Spring Boot 3.2.3, Spring security, JWT, JPA, MySQL, Websocket, Gi
 FE - Next.js, TypeScript, Tailwind CSS, React, Zustand, React-Query, Github Actions, Vercel
 
 ### 기능
+
 - 로그인 / 회원가입 (Refresh Token 적용)
 - 회원정보 수정/탈퇴
 - 방 만들기/참여

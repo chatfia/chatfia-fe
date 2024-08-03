@@ -2,32 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: #141414;
+    --foreground: #ffffff;
+
+    --card: #ffffff;
+    --card-foreground: #141414;
+
+    --popover: #2d2d2d;
+    --popover-foreground: #f0f0f0;
+
+    --primary: #dc382d;
+    --primary-foreground: #f0f0f0;
+
+    --secondary: #c01719;
+    --secondary-foreground: #f0f0f0;
+
+    --muted: #f4f4f4;
+    --muted-foreground: #757575;
+
+    --accent: #f4f4f4;
+    --accent-foreground: #141414;
+
+    --destructive: #e24d49;
+    --destructive-foreground: #f0f0f0;
+
+    --border: #ebebeb;
+    --input: #ebebeb;
+    --ring: #ffffff;
+    --custom: #800000;
+
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
