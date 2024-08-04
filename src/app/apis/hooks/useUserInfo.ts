@@ -1,5 +1,5 @@
 import { useUserStore } from "@/app/stores/useUserStore";
-import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useAuthStore } from '@/app/stores/useAuthStore';
 import { useQuery } from "@tanstack/react-query";
 import { authApi } from "@/app/apis/authApi";
 

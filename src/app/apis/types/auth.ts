@@ -20,23 +20,6 @@ export interface LogInResponse {
   message: string;
 }
 
-// 로그인 후 정보 조회
-export interface UserInfoResponse {
-  loggedIn: boolean;
-  nickname: string;
-  email: string;
-  wins: number;
-  losses: number;
-  mafiaWins: number;
-  mafiaLosses: number;
-  policeWins: number;
-  policeLosses: number;
-  doctorWins: number;
-  doctorLosses: number;
-  citizenWins: number;
-  citizenLosses: number;
-}
-
 // 이메일 인증 입력 타입
 export interface VerifyEmailRequest {
   email: string;
