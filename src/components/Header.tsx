@@ -12,6 +12,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
 import { useUserStore } from "@/app/stores/useUserStore";
+import { Skeleton } from "@/components/ui/skeleton";
+import { TriangleAlert } from "lucide-react";
 
 export default function Header() {
   const { isSuccess } = useAuthStore();
@@ -21,7 +23,6 @@ export default function Header() {
   const { toast } = useToast();
   const { setUserInfo } = useUserStore();
 
-  // useUserInfo 훅을 항상 호출하지만, enabled 옵션으로 로그인 시에만 호출
   const { data, isLoading, isError } = useUserInfo();
 
   // 로그아웃 성공/실패 시 알림 처리
@@ -58,14 +59,21 @@ export default function Header() {
 
   const isActiveLink = (link: string) => pathname === link;
 
-  // 로딩 중이거나 에러가 발생했을 때의 처리
+  // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
   let content;
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = (
+      <div className="flex items-center space-x-4">
+        <div className="space-y-2">
+          <Skeleton className="h-2 w-[100px] bg-gray-400" />
+          <Skeleton className="h-2 w-[70px] bg-gray-400" />
+        </div>
+      </div>
+    );
   } else if (isError || !isSuccess) {
-    content = <p>Error</p>;
+    content = <TriangleAlert className="h-8 w-8 text-red-400" />;
   } else {
-    content = <p>{data?.nickname}</p>;
+    content = <p>{data?.nickname} 님</p>;
   }
 
   return (
