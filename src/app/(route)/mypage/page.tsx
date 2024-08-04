@@ -27,13 +27,13 @@ export default function MyPage() {
     nickname = (
       <div className="flex items-center space-x-4">
         <div className="space-y-2">
-          <Skeleton className="h-2 w-[100px] bg-gray-400" />
-          <Skeleton className="h-2 w-[70px] bg-gray-400" />
+          <Skeleton className="ml-2 h-2 w-[150px] bg-gray-400" />
+          <Skeleton className="ml-2 h-2 w-[100px] bg-gray-400" />
         </div>
       </div>
     );
   } else if (isError || !isSuccess) {
-    nickname = <TriangleAlert className="h-8 w-8 text-red-400" />;
+    nickname = <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />;
   } else {
     nickname = <p>{data?.nickname}</p>;
   }
@@ -44,13 +44,13 @@ export default function MyPage() {
     email = (
       <div className="flex items-center space-x-4">
         <div className="space-y-2">
-          <Skeleton className="h-2 w-[100px] bg-gray-400" />
-          <Skeleton className="h-2 w-[70px] bg-gray-400" />
+          <Skeleton className="ml-2 h-2 w-[250px] bg-gray-400" />
+          <Skeleton className="ml-2 h-2 w-[200px] bg-gray-400" />
         </div>
       </div>
     );
   } else if (isError || !isSuccess) {
-    email = <TriangleAlert className="h-8 w-8 text-red-400" />;
+    email = <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />;
   } else {
     email = <p>{data?.email}</p>;
   }
@@ -66,13 +66,15 @@ export default function MyPage() {
           </Link>
         </div>
         <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 p-4">
-          <span className="text-lg text-zinc-900">{nickname}</span>
+          <span className="flex text-lg text-zinc-900">
+            닉네임 : {nickname}
+          </span>
           <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
             수정
           </button>
         </div>
         <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 p-4">
-          <span className="text-lg text-zinc-900">{email}</span>
+          <span className="flex text-lg text-zinc-900">이메일 : {email}</span>
           <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
             수정
           </button>
