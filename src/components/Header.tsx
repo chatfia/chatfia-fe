@@ -21,7 +21,7 @@ export default function Header() {
   const { toast } = useToast();
   const { setUserInfo } = useUserStore();
 
-  // useUserInfo 훅을 항상 호출하지만, 결과를 나중에 사용
+  // useUserInfo 훅을 항상 호출하지만, enabled 옵션으로 로그인 시에만 호출
   const { data, isLoading, isError } = useUserInfo();
 
   // 로그아웃 성공/실패 시 알림 처리
