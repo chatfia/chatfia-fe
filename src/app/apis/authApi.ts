@@ -1,6 +1,5 @@
 import { fetchExtended } from "@/app/apis/baseApi";
 import {
-  UserInfoResponse,
   LogInRequest,
   VerifyEmailRequest,
   VerifyCodeRequest,
@@ -18,14 +17,10 @@ export const authApi = {
   },
 
   // 로그인 후 정보
-  checkAuth: async (): Promise<UserInfoResponse> => {
-    const response = await fetchExtended("/api/auth/check", {
+  checkAuth: async () => {
+    return fetchExtended("/api/auth/check", {
       method: "GET",
     });
-
-    // 데이터 파싱 후에 UserInfoResponse로 캐스팅
-    const data = (await response.json()) as UserInfoResponse;
-    return data;
   },
 
   // 로그아웃
