@@ -22,7 +22,6 @@ export default function Header() {
   const pathname = usePathname();
   const { toast } = useToast();
   const { setUserInfo } = useUserStore();
-
   const { data, isLoading, isError } = useUserInfo();
 
   // 로그아웃 성공/실패 시 알림 처리
@@ -60,9 +59,9 @@ export default function Header() {
   const isActiveLink = (link: string) => pathname === link;
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
-  let content;
+  let nickname;
   if (isLoading) {
-    content = (
+    nickname = (
       <div className="flex items-center space-x-4">
         <div className="space-y-2">
           <Skeleton className="h-2 w-[100px] bg-gray-400" />
@@ -71,9 +70,9 @@ export default function Header() {
       </div>
     );
   } else if (isError || !isSuccess) {
-    content = <TriangleAlert className="h-8 w-8 text-red-400" />;
+    nickname = <TriangleAlert className="h-8 w-8 text-red-400" />;
   } else {
-    content = <p>{data?.nickname} 님</p>;
+    nickname = <p>{data?.nickname} 님</p>;
   }
 
   return (
@@ -135,7 +134,7 @@ export default function Header() {
                 <AvatarFallback>ID</AvatarFallback>
               </Avatar>
             </Link>
-            {content}
+            {nickname}
             <button onClick={handleLogOutClick}>
               <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
             </button>
