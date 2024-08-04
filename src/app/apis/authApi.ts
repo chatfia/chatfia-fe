@@ -18,10 +18,11 @@ export const authApi = {
   },
 
   // 로그인 후 정보
-  checkAuth: async () => {
-    return fetchExtended("/api/auth/check", {
+  checkAuth: async (): Promise<UserInfoResponse> => {
+    const response = await fetchExtended("/api/auth/check", {
       method: "GET",
     });
+    return response.json();
   },
 
   // 로그아웃
