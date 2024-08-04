@@ -25,16 +25,16 @@ export interface UserInfoResponse {
   loggedIn: boolean;
   nickname: string;
   email: string;
-  wins: 10;
-  losses: 5;
-  mafiaWins: 3;
-  mafiaLosses: 2;
-  policeWins: 2;
-  policeLosses: 1;
-  doctorWins: 1;
-  doctorLosses: 0;
-  citizenWins: 4;
-  citizenLosses: 2;
+  wins: number;
+  losses: number;
+  mafiaWins: number;
+  mafiaLosses: number;
+  policeWins: number;
+  policeLosses: number;
+  doctorWins: number;
+  doctorLosses: number;
+  citizenWins: number;
+  citizenLosses: number;
 }
 
 // 이메일 인증 입력 타입
