@@ -21,38 +21,32 @@ export default function UserProfile() {
   }, [isSuccess, data, setUserInfo]);
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
-  let nickname;
-  if (isLoading) {
-    nickname = (
-      <div className="flex items-center space-x-4">
-        <div className="space-y-2">
-          <Skeleton className="h-2 w-[150px] bg-gray-400" />
-          <Skeleton className="h-2 w-[100px] bg-gray-400" />
-        </div>
+  const nickname = isLoading ? (
+    <div className="flex items-center space-x-4">
+      <div className="space-y-2">
+        <Skeleton className="h-2 w-[150px] bg-gray-400" />
+        <Skeleton className="h-2 w-[100px] bg-gray-400" />
       </div>
-    );
-  } else if (isError || !isSuccess) {
-    nickname = <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />;
-  } else {
-    nickname = <p>{data?.nickname}</p>;
-  }
+    </div>
+  ) : isError || !isSuccess ? (
+    <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
+  ) : (
+    <p>{data?.nickname}</p>
+  );
 
   // 이메일이 로딩 중이거나 에러가 발생했을 때의 처리
-  let email;
-  if (isLoading) {
-    email = (
-      <div className="flex items-center space-x-4">
-        <div className="space-y-2">
-          <Skeleton className="h-2 w-[250px] bg-gray-400" />
-          <Skeleton className="h-2 w-[200px] bg-gray-400" />
-        </div>
+  const email = isLoading ? (
+    <div className="flex items-center space-x-4">
+      <div className="space-y-2">
+        <Skeleton className="h-2 w-[250px] bg-gray-400" />
+        <Skeleton className="h-2 w-[200px] bg-gray-400" />
       </div>
-    );
-  } else if (isError || !isSuccess) {
-    email = <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />;
-  } else {
-    email = <p>{data?.email}</p>;
-  }
+    </div>
+  ) : isError || !isSuccess ? (
+    <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
+  ) : (
+    <p>{data?.email}</p>
+  );
 
   return (
     <div className="w-full max-w-3xl">
@@ -64,25 +58,16 @@ export default function UserProfile() {
       </div>
       <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 p-4">
         <span className="flex text-lg text-zinc-900">
-          닉네임 : &nbsp;{nickname}
+          이메일 : &nbsp;{email}
         </span>
-        <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
-          수정
-        </button>
       </div>
       <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 p-4">
         <span className="flex text-lg text-zinc-900">
-          이메일 : &nbsp;{email}
+          닉네임 : &nbsp;{nickname}
         </span>
-        <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
-          수정
-        </button>
       </div>
       <div className="flex items-center justify-between rounded-b-xl border-t border-gray-200 bg-gray-50 p-4">
         <span className="text-lg text-zinc-900">비밀번호</span>
-        <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
-          수정
-        </button>
       </div>
     </div>
   );

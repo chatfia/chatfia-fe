@@ -3,27 +3,22 @@
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useUserStore } from "@/app/stores/useUserStore";
 import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TriangleAlert } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { ChevronRight } from "lucide-react";
+import { UpdateModal } from "@/app/features/mypage/UpdateModal";
+import DeleteAccount from "@/app/features/mypage/DeleteAccount";
 
 export default function ProfilePage() {
   const { isSuccess } = useAuthStore();
   const { setUserInfo } = useUserStore();
   const { data, isLoading, isError } = useUserInfo();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"nickname" | "password">(
+    "nickname",
+  );
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -32,38 +27,73 @@ export default function ProfilePage() {
   }, [isSuccess, data, setUserInfo]);
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
-  let nickname;
-  if (isLoading) {
-    nickname = (
-      <div className="flex items-center space-x-4">
-        <div className="space-y-2">
-          <Skeleton className="h-2 w-[150px] bg-gray-400" />
-          <Skeleton className="h-2 w-[100px] bg-gray-400" />
-        </div>
+  const nickname = isLoading ? (
+    <div className="flex items-center space-x-4">
+      <div className="space-y-2">
+        <Skeleton className="h-2 w-[150px] bg-gray-400" />
+        <Skeleton className="h-2 w-[100px] bg-gray-400" />
       </div>
-    );
-  } else if (isError || !isSuccess) {
-    nickname = <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />;
-  } else {
-    nickname = <p>{data?.nickname}</p>;
-  }
+    </div>
+  ) : isError || !isSuccess ? (
+    <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
+  ) : (
+    <p>{data?.nickname}</p>
+  );
 
   // 이메일이 로딩 중이거나 에러가 발생했을 때의 처리
-  let email;
-  if (isLoading) {
-    email = (
-      <div className="flex items-center space-x-4">
-        <div className="space-y-2">
-          <Skeleton className="h-2 w-[250px] bg-gray-400" />
-          <Skeleton className="h-2 w-[200px] bg-gray-400" />
-        </div>
+  const email = isLoading ? (
+    <div className="flex items-center space-x-4">
+      <div className="space-y-2">
+        <Skeleton className="h-2 w-[250px] bg-gray-400" />
+        <Skeleton className="h-2 w-[200px] bg-gray-400" />
       </div>
-    );
-  } else if (isError || !isSuccess) {
-    email = <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />;
-  } else {
-    email = <p>{data?.email}</p>;
-  }
+    </div>
+  ) : isError || !isSuccess ? (
+    <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
+  ) : (
+    <p>{data?.email}</p>
+  );
+
+  const openModal = (type: "nickname" | "password") => {
+    setModalType(type);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const getModalProps = () => {
+    if (modalType === "nickname") {
+      return {
+        title: "닉네임 수정",
+        currentValueLabel: "현재 닉네임",
+        currentValue: data?.nickname || "",
+        newValueLabel: "변경할 닉네임 입력",
+        newValuePlaceholder: "변경할 닉네임 입력",
+        onConfirm: () => {
+          // 닉네임 변경 API 추가
+          console.log("닉네임 변경 완료");
+          closeModal();
+        },
+        modalType: "nickname" as "nickname",
+      };
+    } else {
+      return {
+        title: "비밀번호 변경",
+        newValueLabel: "새 비밀번호 입력",
+        newValuePlaceholder: "새 비밀번호 입력",
+        confirmValueLabel: "새 비밀번호 확인",
+        confirmValuePlaceholder: "새 비밀번호 다시 입력",
+        onConfirm: () => {
+          // 비밀번호 변경 API 추가
+          console.log("비밀번호 변경 완료");
+          closeModal();
+        },
+        modalType: "password" as "password",
+      };
+    }
+  };
 
   return (
     <div className="flex flex-col items-center p-4 pt-16">
@@ -75,7 +105,7 @@ export default function ProfilePage() {
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>ID</AvatarFallback>
             </Avatar>
-            <div className="flex-col space-y-2">
+            <div className="flex-col space-y-2 text-zinc-900">
               <p className="text-xl font-bold">{nickname}</p>
               <p>{email}</p>
             </div>
@@ -83,48 +113,36 @@ export default function ProfilePage() {
         </div>
         <div className="flex items-center justify-between border-t border-gray-200 p-4">
           <span className="flex text-lg text-zinc-900">
-            닉네임 : &nbsp;{nickname}
+            이메일 : &nbsp;{email}
           </span>
-          <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
-            수정
-          </button>
         </div>
         <div className="flex items-center justify-between border-t border-gray-200 p-4">
           <span className="flex text-lg text-zinc-900">
-            이메일 : &nbsp;{email}
+            닉네임 : &nbsp;{nickname}
           </span>
-          <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
+          <button
+            className="rounded bg-gray-200 px-3 py-1 text-gray-800"
+            onClick={() => openModal("nickname")}
+          >
             수정
           </button>
         </div>
         <div className="flex items-center justify-between rounded-b-xl border-t border-gray-200 p-4">
           <span className="text-lg text-zinc-900">비밀번호</span>
-          <button className="rounded bg-gray-200 px-3 py-1 text-gray-800">
+          <button
+            className="rounded bg-gray-200 px-3 py-1 text-gray-800"
+            onClick={() => openModal("password")}
+          >
             수정
           </button>
         </div>
       </div>
-      <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <div className="flex w-full max-w-3xl transform cursor-pointer items-center justify-start p-4 text-gray-400">
-            <p>회원탈퇴</p>
-            <ChevronRight />
-          </div>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>정말로 탈퇴하시겠어요?</AlertDialogTitle>
-            <AlertDialogDescription>
-              회원 탈퇴 시 쿠폰, 포인트는 소멸되며, 계정 정보는 복구가
-              불가능합니다.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>계속 사용하기</AlertDialogCancel>
-            <AlertDialogAction>네 탈퇴할게요</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteAccount />
+      <UpdateModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        {...getModalProps()}
+      />
     </div>
   );
 }

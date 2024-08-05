@@ -59,21 +59,18 @@ export default function Header() {
   const isActiveLink = (link: string) => pathname === link;
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
-  let nickname;
-  if (isLoading) {
-    nickname = (
-      <div className="flex items-center space-x-4">
-        <div className="space-y-2">
-          <Skeleton className="h-2 w-[100px] bg-gray-400" />
-          <Skeleton className="h-2 w-[70px] bg-gray-400" />
-        </div>
+  const nickname = isLoading ? (
+    <div className="flex items-center space-x-4">
+      <div className="space-y-2">
+        <Skeleton className="h-2 w-[150px] bg-gray-400" />
+        <Skeleton className="h-2 w-[100px] bg-gray-400" />
       </div>
-    );
-  } else if (isError || !isSuccess) {
-    nickname = <TriangleAlert className="h-8 w-8 text-red-400" />;
-  } else {
-    nickname = <p>{data?.nickname} 님</p>;
-  }
+    </div>
+  ) : isError || !isSuccess ? (
+    <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
+  ) : (
+    <p>{data?.nickname}</p>
+  );
 
   return (
     <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
