@@ -105,7 +105,7 @@ export default function ProfilePage() {
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>ID</AvatarFallback>
             </Avatar>
-            <div className="flex-col space-y-2 text-zinc-900">
+            <div className="flex-col space-y-1 text-zinc-900">
               <p className="text-xl font-bold">{nickname}</p>
               <p>{email}</p>
             </div>
