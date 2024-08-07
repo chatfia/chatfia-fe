@@ -2,7 +2,7 @@ import { z } from "zod";
 import { signUpSchema } from "@/app/validators/auth";
 import { useToast } from "@/components/ui/use-toast";
 import { useFormContext } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { VerifyEmailRequest, VerifyCodeRequest } from "@/app/apis/types/auth";
 import { useVerifyEmail } from "@/app/apis/hooks/useVerifyEmail";
 import { useVerifyCode } from "@/app/apis/hooks/useVerifyCode";
@@ -26,8 +26,8 @@ export const EmailVerification: React.FC = () => {
   const [showVerifyCodeForm, setShowVerifyCodeForm] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-  const [isCallingApi, setIsCallingApi] = useState(false);
-  const [isVerifyingCode, setIsVerifyingCode] = useState(false);
+  const emailApiCalled = useRef(false);
+  const codeApiCalled = useRef(false);
 
   // 이메일 인증 및 인증번호 검증 관련 상태
   const [verifyEmailData, setVerifyEmailData] =
@@ -43,7 +43,7 @@ export const EmailVerification: React.FC = () => {
 
   // 이메일 인증 요청 함수
   const handleVerifyEmail = () => {
-    if (isCallingApi) return; // 이미 API 호출 중이면 실행하지 않음
+    if (emailApiCalled.current) return;
 
     const email = getValues("email");
 
@@ -51,7 +51,7 @@ export const EmailVerification: React.FC = () => {
       setVerifyEmailData({ email });
       setShowVerifyCodeForm(true);
       setIsEmailVerified(true);
-      setIsCallingApi(true); // API 호출 상태 설정
+      emailApiCalled.current = true; // API 호출 중복 방지
     } else {
       toast({
         title: "이메일을 입력해주세요.",
@@ -63,14 +63,14 @@ export const EmailVerification: React.FC = () => {
 
   // 이메일 인증번호 확인 요청 함수
   const handleVerifyCode = () => {
-    if (isVerifyingCode) return; // 이미 인증번호 검증 중이면 실행하지 않음
+    if (codeApiCalled.current) return;
 
     const email = getValues("email");
     const code = getValues("emailVerifyCode");
 
     if (email && code) {
       setVerifyCodeData({ email, code });
-      setIsVerifyingCode(true); // 인증번호 검증 상태 설정
+      codeApiCalled.current = true; // API 호출 중복 방지
     } else {
       toast({
         title: "이메일과 인증번호를 모두 입력해주세요.",
@@ -89,6 +89,7 @@ export const EmailVerification: React.FC = () => {
         duration: 3000,
       });
       setVerifyEmailData(null);
+      emailApiCalled.current = false; // API 호출 완료 후 상태 초기화
     } else if (verifyEmailError) {
       toast({
         title: "이메일 인증번호 발송에 실패했습니다.",
@@ -97,6 +98,7 @@ export const EmailVerification: React.FC = () => {
         duration: 3000,
       });
       setVerifyEmailData(null);
+      emailApiCalled.current = false; // API 호출 완료 후 상태 초기화
     }
   }, [verifyEmailResult, verifyEmailError, toast]);
 
@@ -109,6 +111,7 @@ export const EmailVerification: React.FC = () => {
         duration: 3000,
       });
       setVerifyCodeData(null);
+      codeApiCalled.current = false; // API 호출 완료 후 상태 초기화
     } else if (verifyCodeError) {
       toast({
         title: "이메일 인증에 실패했습니다.",
@@ -117,17 +120,9 @@ export const EmailVerification: React.FC = () => {
         duration: 3000,
       });
       setVerifyCodeData(null);
+      codeApiCalled.current = false; // API 호출 완료 후 상태 초기화
     }
   }, [verifyCodeResult, verifyCodeError, toast]);
-
-  useEffect(() => {
-    if (verifyEmailResult || verifyEmailError) {
-      setIsCallingApi(false); // 이메일 인증 API 호출이 완료되면 상태를 초기화
-    }
-    if (verifyCodeResult || verifyCodeError) {
-      setIsVerifyingCode(false); // 인증번호 검증 API 호출이 완료되면 상태를 초기화
-    }
-  }, [verifyEmailResult, verifyEmailError, verifyCodeResult, verifyCodeError]);
 
   return (
     <>
