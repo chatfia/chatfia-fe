@@ -54,4 +54,12 @@ export const authApi = {
     });
     return response.json();
   },
+
+  // 회원탈퇴
+  deleteAccount: async () => {
+    const response = await fetchExtended("/api/info", {
+      method: "DELETE",
+    });
+    return response.json();
+  },
 };
