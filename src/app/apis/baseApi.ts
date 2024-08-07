@@ -28,9 +28,15 @@ export const fetchExtended = returnFetch({
         throw new Error(errorMessage);
       }
 
+      // 응답 본문이 있는 경우만 파싱하고, 없는 경우 null 반환
+      const responseText = await response.text();
+      if (!responseText) {
+        return null; // 응답 본문이 없는 경우 null 반환
+      }
+
       try {
-        return await response.json();
-      } catch {
+        return JSON.parse(responseText); // 본문이 있는 경우 JSON 파싱
+      } catch (error) {
         const parseError = "응답 데이터를 파싱할 수 없습니다";
         console.error(parseError);
         throw new Error(parseError);
