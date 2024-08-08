@@ -2,7 +2,6 @@
 
 import { useToast } from "@/components/ui/use-toast";
 import { useDeleteAccount } from "@/app/apis/hooks/useDeleteAccount";
-import { useEffect } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,24 +17,7 @@ import { ChevronRight } from "lucide-react";
 
 export default function DeleteAccount() {
   const { toast } = useToast();
-  const deleteAccountMutation = useDeleteAccount();
-
-  useEffect(() => {
-    if (deleteAccountMutation.isSuccess) {
-      toast({
-        title: "회원탈퇴가 성공적으로 완료되었습니다.",
-        variant: "success",
-        duration: 3000,
-      });
-    } else if (deleteAccountMutation.isError) {
-      toast({
-        title: "회원탈퇴에 실패했습니다.",
-        description: "다시 시도해 주세요.",
-        variant: "destructive",
-        duration: 3000,
-      });
-    }
-  }, [deleteAccountMutation.isSuccess, deleteAccountMutation.isError, toast]);
+  const deleteAccount = useDeleteAccount();
 
   return (
     <AlertDialog>
@@ -56,9 +38,17 @@ export default function DeleteAccount() {
         <AlertDialogFooter>
           <AlertDialogCancel>계속 사용하기</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => {
-              deleteAccountMutation.mutate();
-            }}
+            onClick={() =>
+              deleteAccount.mutate(undefined, {
+                onSuccess: () => {
+                  toast({
+                    title: "회원탈퇴가 성공적으로 완료되었습니다.",
+                    variant: "success",
+                    duration: 3000,
+                  });
+                },
+              })
+            }
           >
             네 탈퇴할게요
           </AlertDialogAction>
