@@ -25,7 +25,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
 
   const onSubmit = (data: any) => {
     console.log("제출된 데이터:", data); // 데이터 출력
-    onConfirm();
+    onConfirm(data);
   };
 
   if (!isOpen) return null;
