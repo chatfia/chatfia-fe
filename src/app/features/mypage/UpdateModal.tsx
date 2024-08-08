@@ -2,6 +2,8 @@ import { UpdateModalProps } from "@/components/types/modal";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateSchema } from "@/app/validators/auth";
+import { useToast } from "@/components/ui/use-toast";
+import { useUpdateNickname } from "@/app/apis/hooks/useUpdateNickname";
 import { X } from "lucide-react";
 
 export const UpdateModal: React.FC<UpdateModalProps> = ({
@@ -23,9 +25,35 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
     formState: { errors },
   } = useForm({ resolver: zodResolver(updateSchema) });
 
+  const { toast } = useToast();
+  const updateNicknameMutation = useUpdateNickname();
+
   const onSubmit = (data: any) => {
-    console.log("제출된 데이터:", data);
-    onConfirm(data);
+    const handleSuccess = (response: any) => {
+      toast({
+        title: "닉네임이 성공적으로 변경되었습니다.",
+        variant: "success",
+        duration: 3000,
+      });
+      onConfirm(response.nickname); // 부모 컴포넌트로 닉네임 전달
+      onClose(); // 모달 닫기
+    };
+
+    const handleError = (error: any) => {
+      toast({
+        title: "닉네임 변경에 실패했습니다.",
+        description: (error as Error).message,
+        variant: "destructive",
+        duration: 3000,
+      });
+    };
+
+    if (modalType === "nickname") {
+      updateNicknameMutation.mutate(data.nickname, {
+        onSuccess: handleSuccess,
+        onError: handleError,
+      });
+    }
   };
 
   if (!isOpen) return null;
