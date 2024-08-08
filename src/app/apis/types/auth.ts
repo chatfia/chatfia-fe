@@ -39,7 +39,7 @@ export interface SignUpRequest extends Credentials {
 
 // 회원가입 후 응답 타입
 export interface SignUpResponse {
-  id: number;
+  id: string;
   email: string;
   nickname: string;
 }
