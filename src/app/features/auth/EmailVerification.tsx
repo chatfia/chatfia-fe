@@ -93,6 +93,9 @@ export const EmailVerification: React.FC = () => {
 
   // 이메일 인증번호 인증 성공/실패 시 알림 처리
   useEffect(() => {
+    console.log("verifyCodeResult:", verifyCodeResult);
+    console.log("verifyCodeError:", verifyCodeError);
+
     if (verifyCodeResult) {
       toast({
         title: "이메일 인증에 성공했습니다.",
