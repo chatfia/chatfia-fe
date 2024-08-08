@@ -69,8 +69,11 @@ export default function ProfilePage() {
   };
 
   const handleNicknameUpdate = (nickname: string) => {
+    console.log("handleNicknameUpdate 호출:", nickname);
+
     updateNicknameMutation.mutate(nickname, {
       onSuccess: (response) => {
+        console.log("닉네임 변경 성공:", response);
         toast({
           title: "닉네임이 성공적으로 변경되었습니다.",
           variant: "success",
@@ -80,6 +83,7 @@ export default function ProfilePage() {
         closeModal();
       },
       onError: (error) => {
+        console.error("닉네임 변경 실패:", error);
         toast({
           title: "닉네임 변경에 실패했습니다.",
           description: (error as Error).message,
@@ -98,7 +102,10 @@ export default function ProfilePage() {
         currentValue: data?.nickname || "",
         newValueLabel: "변경할 닉네임 입력",
         newValuePlaceholder: "변경할 닉네임 입력",
-        onConfirm: handleNicknameUpdate,
+        onConfirm: (nickname: string) => {
+          console.log("닉네임 변경 시도:", nickname);
+          handleNicknameUpdate(nickname);
+        },
         modalType: "nickname" as "nickname",
       };
     } else {
