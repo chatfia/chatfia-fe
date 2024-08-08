@@ -31,6 +31,10 @@ export default function ProfilePage() {
     }
   }, [isSuccess, data, setUserInfo]);
 
+  useEffect(() => {
+    console.log("모달 상태:", isModalOpen); // 디버깅 로그 추가
+  }, [isModalOpen]);
+
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
   const nickname = isLoading ? (
     <div className="flex items-center space-x-4">
@@ -60,6 +64,7 @@ export default function ProfilePage() {
   );
 
   const openModal = (type: "nickname" | "password") => {
+    console.log("모달 열기 시도:", type);
     setModalType(type);
     setIsModalOpen(true);
   };
