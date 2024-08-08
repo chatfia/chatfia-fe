@@ -86,7 +86,7 @@ export const SignUpForm: React.FC<AuthFormProps> = ({ step, setStep }) => {
       <form
         onSubmit={signUpForm.handleSubmit(onSignUpSubmit)}
         className="relative space-y-3 overflow-x-hidden p-6"
-        method="GET"
+        method="POST"
       >
         <EmailVerification />
         <FormField

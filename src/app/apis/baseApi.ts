@@ -17,39 +17,47 @@ export const fetchExtended = returnFetch({
       console.log("Request Init:", args[1], "\n\n");
       return args;
     },
+
     response: async (response, requestArgs) => {
       console.log("********* after receiving response *********");
       console.log("URL:", requestArgs[0].toString());
       console.log("Request Init:", requestArgs[1], "\n\n");
+      console.log("Response Status:", response.status);
 
-      // 200-299 상태 코드 또는 201 Created 상태 코드 처리
+      // 상태 코드가 200-299 범위 또는 201 Created인 경우
       if (response.ok || response.status === 201) {
-        // 응답 본문이 있는지 확인
         const contentType = response.headers.get("Content-Type");
 
+        // JSON 응답 처리
         if (contentType && contentType.includes("application/json")) {
-          // JSON 응답인 경우
           try {
-            return await response.json();
-          } catch {
-            const parseError = "응답 데이터를 JSON으로 파싱할 수 없습니다";
-            console.error(parseError);
-            throw new Error(parseError);
+            const jsonResponse = await response.json();
+            console.log("JSON 응답:", jsonResponse);
+            return jsonResponse;
+          } catch (error) {
+            console.error("JSON 파싱 중 오류:", error);
+            throw new Error("응답 데이터를 JSON으로 파싱할 수 없습니다");
           }
-        } else if (contentType && contentType.includes("text/plain")) {
-          // 텍스트 응답인 경우
-          try {
-            return await response.text();
-          } catch {
-            const parseError = "응답 데이터를 텍스트로 파싱할 수 없습니다";
-            console.error(parseError);
-            throw new Error(parseError);
-          }
-        } else {
-          // 응답 본문이 없는 경우에도 성공으로 간주
-          return;
         }
-      } else {
+        // 텍스트 응답 처리
+        else if (contentType && contentType.includes("text/plain")) {
+          try {
+            const textResponse = await response.text();
+            console.log("텍스트 응답:", textResponse);
+            return textResponse;
+          } catch (error) {
+            console.error("텍스트 파싱 중 오류:", error);
+            throw new Error("응답 데이터를 텍스트로 파싱할 수 없습니다");
+          }
+        }
+        // 응답 본문이 없는 경우
+        else {
+          console.log("응답 본문 없음, 성공으로 간주");
+          return null; // 아무 값도 반환하지 않음
+        }
+      }
+      // 상태 코드가 200-299 범위 밖인 경우
+      else {
         const errorMessage = `오류가 발생했습니다 (상태 코드: ${response.status})`;
         console.error(errorMessage);
         throw new Error(errorMessage);
