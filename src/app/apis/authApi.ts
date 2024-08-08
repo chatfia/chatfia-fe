@@ -48,11 +48,23 @@ export const authApi = {
 
   // 회원가입
   signUp: async (signUpUserData: SignUpRequest): Promise<SignUpResponse> => {
-    const response = await fetchExtended("/api/signup", {
+    const data = await fetchExtended("/api/signup", {
       method: "POST",
       body: JSON.stringify(signUpUserData),
     });
-    return response.json();
+
+    // 반환된 데이터가 SignUpResponse 타입과 일치하는지 확인
+    if (
+      data &&
+      typeof data === "object" &&
+      "id" in data &&
+      "email" in data &&
+      "nickname" in data
+    ) {
+      return data as SignUpResponse;
+    } else {
+      throw new Error("서버 응답이 올바르지 않습니다.");
+    }
   },
 
   // 회원탈퇴

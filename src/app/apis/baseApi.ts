@@ -22,27 +22,15 @@ export const fetchExtended = returnFetch({
       console.log("URL:", requestArgs[0].toString());
       console.log("Request Init:", requestArgs[1], "\n\n");
 
-      // 200-299 상태 코드 또는 201 Created 상태 코드 처리
-      if (response.ok || response.status === 201) {
-        // 응답 본문이 있는지 확인
+      if (response.ok) {
         const contentType = response.headers.get("Content-Type");
 
         if (contentType?.includes("application/json")) {
-          try {
-            return await response.clone().json();
-          } catch (error) {
-            console.error("JSON 파싱 오류:", error);
-            throw new Error("응답 데이터를 JSON으로 파싱할 수 없습니다");
-          }
+          return response.json(); // JSON 응답 파싱
         } else if (contentType?.includes("text/plain")) {
-          try {
-            return await response.clone().text();
-          } catch (error) {
-            console.error("텍스트 파싱 오류:", error);
-            throw new Error("응답 데이터를 텍스트로 파싱할 수 없습니다");
-          }
+          return response.text(); // 텍스트 응답 파싱
         } else {
-          return null;
+          return null; // 빈 응답 처리
         }
       } else {
         const errorMessage = `오류가 발생했습니다 (상태 코드: ${response.status})`;
