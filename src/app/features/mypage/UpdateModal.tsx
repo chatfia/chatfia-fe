@@ -24,7 +24,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({
   } = useForm({ resolver: zodResolver(updateSchema) });
 
   const onSubmit = (data: any) => {
-    console.log("제출된 데이터:", data); // 데이터 출력
+    console.log("제출된 데이터:", data);
     onConfirm(data);
   };
 
