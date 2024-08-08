@@ -3,6 +3,8 @@
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useUserStore } from "@/app/stores/useUserStore";
 import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
+import { useToast } from "@/components/ui/use-toast";
+import { useUpdateNickname } from "@/app/apis/hooks/useUpdateNickname";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TriangleAlert } from "lucide-react";
@@ -19,6 +21,9 @@ export default function ProfilePage() {
   const [modalType, setModalType] = useState<"nickname" | "password">(
     "nickname",
   );
+
+  const { toast } = useToast();
+  const updateNicknameMutation = useUpdateNickname();
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -63,6 +68,28 @@ export default function ProfilePage() {
     setIsModalOpen(false);
   };
 
+  const handleNicknameUpdate = (nickname: string) => {
+    updateNicknameMutation.mutate(nickname, {
+      onSuccess: (response) => {
+        toast({
+          title: "닉네임이 성공적으로 변경되었습니다.",
+          variant: "success",
+          duration: 3000,
+        });
+        closeModal();
+        setUserInfo(response.nickname, response.email);
+      },
+      onError: (error) => {
+        toast({
+          title: "닉네임 변경에 실패했습니다.",
+          description: (error as Error).message,
+          variant: "destructive",
+          duration: 3000,
+        });
+      },
+    });
+  };
+
   const getModalProps = () => {
     if (modalType === "nickname") {
       return {
@@ -71,11 +98,7 @@ export default function ProfilePage() {
         currentValue: data?.nickname || "",
         newValueLabel: "변경할 닉네임 입력",
         newValuePlaceholder: "변경할 닉네임 입력",
-        onConfirm: () => {
-          // 닉네임 변경 API 추가
-          console.log("닉네임 변경 완료");
-          closeModal();
-        },
+        onConfirm: (nickname: string) => handleNicknameUpdate(nickname),
         modalType: "nickname" as "nickname",
       };
     } else {

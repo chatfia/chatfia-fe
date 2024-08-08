@@ -8,6 +8,6 @@ export interface UpdateModalProps {
   newValuePlaceholder: string;
   confirmValueLabel?: string;
   confirmValuePlaceholder?: string;
-  onConfirm: () => void;
+  onConfirm: (value: string) => void;
   modalType: "nickname" | "password";
 }
