@@ -8,8 +8,8 @@ export const useSignUp = () => {
     onSuccess: (data: SignUpResponse) => {
       console.log(data);
     },
-    onError: (error: Error) => {
-      console.log(error);
+    onError: (error) => {
+      console.error("회원가입 중 에러 발생:", error);
     },
   });
 };
