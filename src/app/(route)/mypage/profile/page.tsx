@@ -76,8 +76,8 @@ export default function ProfilePage() {
           variant: "success",
           duration: 3000,
         });
-        closeModal();
         setUserInfo(response.nickname, response.email);
+        closeModal();
       },
       onError: (error) => {
         toast({
@@ -98,7 +98,7 @@ export default function ProfilePage() {
         currentValue: data?.nickname || "",
         newValueLabel: "변경할 닉네임 입력",
         newValuePlaceholder: "변경할 닉네임 입력",
-        onConfirm: (nickname: string) => handleNicknameUpdate(nickname),
+        onConfirm: handleNicknameUpdate,
         modalType: "nickname" as "nickname",
       };
     } else {
