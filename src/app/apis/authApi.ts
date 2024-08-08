@@ -52,9 +52,7 @@ export const authApi = {
       method: "POST",
       body: JSON.stringify(signUpUserData),
     });
-
-    const data: SignUpResponse = await response.json();
-    return data;
+    return response.json();
   },
 
   // 회원탈퇴
