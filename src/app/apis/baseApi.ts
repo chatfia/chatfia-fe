@@ -28,18 +28,30 @@ export const fetchExtended = returnFetch({
         throw new Error(errorMessage);
       }
 
-      // 응답 본문이 있는 경우만 파싱하고, 없는 경우 null 반환
-      const responseText = await response.text();
-      if (!responseText) {
-        return null; // 응답 본문이 없는 경우 null 반환
-      }
+      // 응답 본문이 있는지 확인
+      const contentType = response.headers.get("Content-Type");
 
-      try {
-        return JSON.parse(responseText); // 본문이 있는 경우 JSON 파싱
-      } catch (error) {
-        const parseError = "응답 데이터를 파싱할 수 없습니다";
-        console.error(parseError);
-        throw new Error(parseError);
+      if (contentType && contentType.includes("application/json")) {
+        // JSON 응답인 경우
+        try {
+          return await response.json();
+        } catch {
+          const parseError = "응답 데이터를 JSON으로 파싱할 수 없습니다";
+          console.error(parseError);
+          throw new Error(parseError);
+        }
+      } else if (contentType && contentType.includes("text/plain")) {
+        // 텍스트 응답인 경우
+        try {
+          return await response.text();
+        } catch {
+          const parseError = "응답 데이터를 텍스트로 파싱할 수 없습니다";
+          console.error(parseError);
+          throw new Error(parseError);
+        }
+      } else {
+        // 응답 본문이 없는 경우
+        return null;
       }
     },
   },
