@@ -22,18 +22,14 @@ export default function ProfilePage() {
     "nickname",
   );
 
-  const { toast } = useToast();
-  const updateNicknameMutation = useUpdateNickname();
+  const { toast } = useToast(); // 알림 초기화
+  const updateNicknameMutation = useUpdateNickname(); // 닉네임 수정 훅 초기화
 
   useEffect(() => {
     if (isSuccess && data) {
       setUserInfo(data.nickname, data.email);
     }
   }, [isSuccess, data, setUserInfo]);
-
-  useEffect(() => {
-    console.log("모달 상태:", isModalOpen); // 디버깅 로그 추가
-  }, [isModalOpen]);
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
   const nickname = isLoading ? (
@@ -64,39 +60,12 @@ export default function ProfilePage() {
   );
 
   const openModal = (type: "nickname" | "password") => {
-    console.log("모달 열기 시도:", type);
     setModalType(type);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleNicknameUpdate = (nickname: string) => {
-    console.log("handleNicknameUpdate 호출:", nickname);
-
-    updateNicknameMutation.mutate(nickname, {
-      onSuccess: (response) => {
-        console.log("닉네임 변경 성공:", response);
-        toast({
-          title: "닉네임이 성공적으로 변경되었습니다.",
-          variant: "success",
-          duration: 3000,
-        });
-        setUserInfo(response.nickname, response.email);
-        closeModal();
-      },
-      onError: (error) => {
-        console.error("닉네임 변경 실패:", error);
-        toast({
-          title: "닉네임 변경에 실패했습니다.",
-          description: (error as Error).message,
-          variant: "destructive",
-          duration: 3000,
-        });
-      },
-    });
   };
 
   const getModalProps = () => {
@@ -107,9 +76,10 @@ export default function ProfilePage() {
         currentValue: data?.nickname || "",
         newValueLabel: "변경할 닉네임 입력",
         newValuePlaceholder: "변경할 닉네임 입력",
-        onConfirm: (nickname: string) => {
-          console.log("닉네임 변경 시도:", nickname);
-          handleNicknameUpdate(nickname);
+        onConfirm: () => {
+          // 닉네임 변경 API 추가
+          console.log("닉네임 변경 완료");
+          closeModal();
         },
         modalType: "nickname" as "nickname",
       };
