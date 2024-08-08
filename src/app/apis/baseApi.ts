@@ -29,21 +29,20 @@ export const fetchExtended = returnFetch({
 
         if (contentType?.includes("application/json")) {
           try {
-            return await response.json(); // JSON 응답인 경우
+            return await response.clone().json();
           } catch (error) {
             console.error("JSON 파싱 오류:", error);
             throw new Error("응답 데이터를 JSON으로 파싱할 수 없습니다");
           }
         } else if (contentType?.includes("text/plain")) {
           try {
-            return await response.text(); // 텍스트 응답인 경우
+            return await response.clone().text();
           } catch (error) {
             console.error("텍스트 파싱 오류:", error);
             throw new Error("응답 데이터를 텍스트로 파싱할 수 없습니다");
           }
         } else {
-          // 응답 본문이 없는 경우에도 성공으로 간주
-          return null; // 빈 응답 처리
+          return null;
         }
       } else {
         const errorMessage = `오류가 발생했습니다 (상태 코드: ${response.status})`;
