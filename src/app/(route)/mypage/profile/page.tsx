@@ -3,13 +3,12 @@
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useUserStore } from "@/app/stores/useUserStore";
 import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
-import { useToast } from "@/components/ui/use-toast";
-import { useUpdateNickname } from "@/app/apis/hooks/useUpdateNickname";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TriangleAlert } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UpdateModal } from "@/app/features/mypage/UpdateModal";
+import { UpdateNicknameModal } from "@/app/features/mypage/UpdateNicknameModal";
+import { UpdatePasswordModal } from "@/app/features/mypage/UpdatePasswordModal";
 import DeleteAccount from "@/app/features/mypage/DeleteAccount";
 
 export default function ProfilePage() {
@@ -17,19 +16,18 @@ export default function ProfilePage() {
   const { setUserInfo } = useUserStore();
   const { data, isLoading, isError } = useUserInfo();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"nickname" | "password">(
-    "nickname",
-  );
-
-  const { toast } = useToast(); // 알림 초기화
-  const updateNicknameMutation = useUpdateNickname(); // 닉네임 수정 훅 초기화
+  const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
   useEffect(() => {
     if (isSuccess && data) {
       setUserInfo(data.nickname, data.email);
     }
   }, [isSuccess, data, setUserInfo]);
+
+  const handleNicknameUpdate = (nickname: string) => {
+    setUserInfo(nickname, data?.email || "");
+  };
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
   const nickname = isLoading ? (
@@ -59,47 +57,6 @@ export default function ProfilePage() {
     <p>{data?.email}</p>
   );
 
-  const openModal = (type: "nickname" | "password") => {
-    setModalType(type);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const getModalProps = () => {
-    if (modalType === "nickname") {
-      return {
-        title: "닉네임 수정",
-        currentValueLabel: "현재 닉네임",
-        currentValue: data?.nickname || "",
-        newValueLabel: "변경할 닉네임 입력",
-        newValuePlaceholder: "변경할 닉네임 입력",
-        onConfirm: () => {
-          // 닉네임 변경 API 추가
-          console.log("닉네임 변경 완료");
-          closeModal();
-        },
-        modalType: "nickname" as "nickname",
-      };
-    } else {
-      return {
-        title: "비밀번호 변경",
-        newValueLabel: "새 비밀번호 입력",
-        newValuePlaceholder: "새 비밀번호 입력",
-        confirmValueLabel: "새 비밀번호 확인",
-        confirmValuePlaceholder: "새 비밀번호 다시 입력",
-        onConfirm: () => {
-          // 비밀번호 변경 API 추가
-          console.log("비밀번호 변경 완료");
-          closeModal();
-        },
-        modalType: "password" as "password",
-      };
-    }
-  };
-
   return (
     <div className="flex flex-col items-center p-4 pt-16">
       <div className="w-full max-w-3xl rounded-xl border-2 border-red-400 bg-gray-50">
@@ -127,7 +84,7 @@ export default function ProfilePage() {
           </span>
           <button
             className="rounded bg-gray-200 px-3 py-1 text-gray-800"
-            onClick={() => openModal("nickname")}
+            onClick={() => setIsNicknameModalOpen(true)}
           >
             수정
           </button>
@@ -136,17 +93,28 @@ export default function ProfilePage() {
           <span className="text-lg text-zinc-900">비밀번호</span>
           <button
             className="rounded bg-gray-200 px-3 py-1 text-gray-800"
-            onClick={() => openModal("password")}
+            onClick={() => setIsPasswordModalOpen(true)}
           >
             수정
           </button>
         </div>
       </div>
       <DeleteAccount />
-      <UpdateModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        {...getModalProps()}
+      <UpdateNicknameModal
+        isOpen={isNicknameModalOpen}
+        onClose={() => setIsNicknameModalOpen(false)}
+        currentNickname={data?.nickname || ""}
+        onSuccess={handleNicknameUpdate}
+      />
+      <UpdatePasswordModal
+        isOpen={isPasswordModalOpen}
+        onClose={() => setIsPasswordModalOpen(false)}
+        onSuccess={() => console.log("비밀번호 변경 완료")}
+        title="비밀번호 수정"
+        newValueLabel="새 비밀번호"
+        newValuePlaceholder="새 비밀번호를 입력하세요"
+        confirmValueLabel="새 비밀번호 확인"
+        confirmValuePlaceholder="새 비밀번호를 다시 입력하세요"
       />
     </div>
   );

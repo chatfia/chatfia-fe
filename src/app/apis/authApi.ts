@@ -67,4 +67,12 @@ export const authApi = {
       body: JSON.stringify({ nickname }),
     });
   },
+
+  // 비밀번호 변경
+  updatePassword: async (password: string): Promise<any> => {
+    return fetchExtended("/api/info/password", {
+      method: "PATCH",
+      body: JSON.stringify({ password }),
+    });
+  },
 };
