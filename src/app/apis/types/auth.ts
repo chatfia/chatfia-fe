@@ -39,7 +39,14 @@ export interface SignUpRequest extends Credentials {
 
 // 회원가입 후 응답 타입
 export interface SignUpResponse {
-  id: string;
+  id: number;
+  email: string;
+  nickname: string;
+}
+
+// 닉네임 수정 시 입력 타입
+export interface UpdateNicknameResponse {
+  id: number;
   email: string;
   nickname: string;
 }

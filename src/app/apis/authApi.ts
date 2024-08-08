@@ -4,7 +4,6 @@ import {
   VerifyEmailRequest,
   VerifyCodeRequest,
   SignUpRequest,
-  SignUpResponse,
 } from "@/app/apis/types/auth";
 
 export const authApi = {
@@ -58,6 +57,14 @@ export const authApi = {
   deleteAccount: async () => {
     return fetchExtended("/api/delete", {
       method: "DELETE",
+    });
+  },
+
+  // 닉네임 수정
+  updateNickname: async (nickname: string): Promise<any> => {
+    return fetchExtended("/api/info/nickname", {
+      method: "PATCH",
+      body: JSON.stringify({ nickname }),
     });
   },
 };
