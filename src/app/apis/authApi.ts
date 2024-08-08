@@ -57,7 +57,7 @@ export const authApi = {
 
   // 회원탈퇴
   deleteAccount: async () => {
-    const response = await fetchExtended("/api/info", {
+    const response = await fetchExtended("/api/delete", {
       method: "DELETE",
     });
     return response.json();
