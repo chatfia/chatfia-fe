@@ -10,7 +10,7 @@ import {
 export const authApi = {
   // 로그인
   logIn: async (logInUserData: LogInRequest) => {
-    return await fetchExtended("/api/login", {
+    return fetchExtended("/api/login", {
       method: "POST",
       body: JSON.stringify(logInUserData),
     });
@@ -52,12 +52,14 @@ export const authApi = {
       method: "POST",
       body: JSON.stringify(signUpUserData),
     });
-    return response.json();
+
+    const data: SignUpResponse = await response.json();
+    return data;
   },
 
   // 회원탈퇴
   deleteAccount: async () => {
-    return await fetchExtended("/api/delete", {
+    return fetchExtended("/api/delete", {
       method: "DELETE",
     });
   },
