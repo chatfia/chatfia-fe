@@ -6,7 +6,7 @@ export const useSignUp = () => {
   return useMutation({
     mutationFn: authApi.signUp,
     onSuccess: (data: SignUpResponse) => {
-      console.log(data);
+      console.log("회원가입 성공:", data);
     },
     onError: (error) => {
       console.error("회원가입 중 에러 발생:", error);
