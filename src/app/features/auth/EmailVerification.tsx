@@ -25,6 +25,7 @@ export const EmailVerification: React.FC = () => {
   const { getValues, control } = useFormContext<SignUpInput>();
   const [showVerifyCodeForm, setShowVerifyCodeForm] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [isVerifyingCode, setIsVerifyingCode] = useState(false);
 
   // 이메일 인증 및 인증번호 검증 관련 상태
   const [verifyEmailData, setVerifyEmailData] =
@@ -61,6 +62,7 @@ export const EmailVerification: React.FC = () => {
     const code = getValues("emailVerifyCode");
 
     if (email && code) {
+      setIsVerifyingCode(true);
       setVerifyCodeData({ email, code });
     } else {
       toast({
@@ -93,23 +95,27 @@ export const EmailVerification: React.FC = () => {
 
   // 이메일 인증번호 인증 성공/실패 시 알림 처리
   useEffect(() => {
-    if (verifyCodeResult) {
-      toast({
-        title: "이메일 인증에 성공했습니다.",
-        variant: "success",
-        duration: 3000,
-      });
-      setVerifyCodeData(null);
-    } else if (verifyCodeError) {
-      toast({
-        title: "이메일 인증에 실패했습니다.",
-        description: verifyCodeError.message,
-        variant: "destructive",
-        duration: 3000,
-      });
-      setVerifyCodeData(null);
+    if (isVerifyingCode) {
+      if (verifyCodeResult) {
+        toast({
+          title: "이메일 인증에 성공했습니다.",
+          variant: "success",
+          duration: 3000,
+        });
+        setVerifyCodeData(null);
+        setIsVerifyingCode(false);
+      } else if (verifyCodeError) {
+        toast({
+          title: "이메일 인증에 실패했습니다.",
+          description: verifyCodeError.message,
+          variant: "destructive",
+          duration: 3000,
+        });
+        setVerifyCodeData(null);
+        setIsVerifyingCode(false);
+      }
     }
-  }, [verifyCodeResult, verifyCodeError, toast]);
+  }, [verifyCodeResult, verifyCodeError, toast, isVerifyingCode]);
 
   return (
     <>

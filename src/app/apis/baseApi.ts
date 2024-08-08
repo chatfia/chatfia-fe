@@ -46,8 +46,8 @@ export const fetchExtended = returnFetch({
             throw new Error(parseError);
           }
         } else {
-          // 응답 본문이 없는 경우
-          return null;
+          // 응답 본문이 없는 경우에도 성공으로 간주
+          return;
         }
       } else {
         const errorMessage = `오류가 발생했습니다 (상태 코드: ${response.status})`;
