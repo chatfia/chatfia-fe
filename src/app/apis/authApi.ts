@@ -62,6 +62,7 @@ export const authApi = {
 
   // 닉네임 수정
   updateNickname: async (nickname: string): Promise<any> => {
+    console.log("updateNicname API : nickname > ", nickname);
     return fetchExtended("/api/info/nickname", {
       method: "PATCH",
       body: JSON.stringify({ nickname }),
