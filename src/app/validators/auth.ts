@@ -69,3 +69,10 @@ export const updateSchema = z
     path: ["confirmNewPassword"],
     message: "비밀번호가 일치하지 않습니다.",
   });
+
+export const updateNicknameSchema = z.object({
+  nickname: z
+    .string()
+    .min(2, { message: "닉네임은 2글자 이상이어야 합니다." })
+    .max(100, { message: "닉네임은 100글자 이하이어야 합니다." }),
+});

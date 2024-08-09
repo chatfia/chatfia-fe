@@ -1,7 +1,7 @@
 import { UpdateNicknameModalProps } from "@/components/types/modal";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { updateSchema } from "@/app/validators/auth";
+import { updateNicknameSchema } from "@/app/validators/auth";
 import { useToast } from "@/components/ui/use-toast";
 import { useUpdateNickname } from "@/app/apis/hooks/useUpdateNickname";
 import { X } from "lucide-react";
@@ -17,14 +17,20 @@ export const UpdateNicknameModal: React.FC<UpdateNicknameModalProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(updateSchema),
+    resolver: zodResolver(updateNicknameSchema),
   });
 
   const { toast } = useToast();
   const updateNicknameMutation = useUpdateNickname();
 
-  const onSubmit = (data: any) => {
+  console.log("현재 폼 상태의 에러:", errors); // 이 부분에 추가
+
+  const onNicknameChangeSubmit = (data: any) => {
+    console.log("onSubmit 실행됨 : data >", data);
+    console.log("폼 제출 시 에러:", errors); // 이 부분에 추가
+
     const handleSuccess = (response: string) => {
+      console.log("handleSuccess 내  : response >", response);
       toast({
         title: "닉네임이 성공적으로 변경되었습니다.",
         variant: "success",
@@ -64,7 +70,7 @@ export const UpdateNicknameModal: React.FC<UpdateNicknameModalProps> = ({
           <div className="mb-4">
             <h2 className="text-lg font-semibold text-black">닉네임 수정</h2>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onNicknameChangeSubmit)}>
             <div className="mb-4">
               <label className="mb-2 block text-sm text-black">
                 현재 닉네임
