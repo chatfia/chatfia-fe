@@ -8,10 +8,12 @@ export interface UpdateNicknameModalProps {
 export interface UpdatePasswordModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: (newPassword: string) => void;
   title: string;
-  newValueLabel: string;
-  newValuePlaceholder: string;
+  currentPasswordLabel: string;
+  currentPasswordPlaceholder: string;
+  newPasswordLabel: string;
+  newPasswordPlaceholder: string;
   confirmValueLabel: string;
   confirmValuePlaceholder: string;
-  onSuccess: (newPassword: string) => void;
 }

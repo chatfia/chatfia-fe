@@ -111,8 +111,10 @@ export default function ProfilePage() {
         onClose={() => setIsPasswordModalOpen(false)}
         onSuccess={() => console.log("비밀번호 변경 완료")}
         title="비밀번호 수정"
-        newValueLabel="새 비밀번호"
-        newValuePlaceholder="새 비밀번호를 입력하세요"
+        currentPasswordLabel="현재 비밀번호"
+        currentPasswordPlaceholder="현재 비밀번호를 입력하세요"
+        newPasswordLabel="새 비밀번호"
+        newPasswordPlaceholder="새 비밀번호를 입력하세요"
         confirmValueLabel="새 비밀번호 확인"
         confirmValuePlaceholder="새 비밀번호를 다시 입력하세요"
       />
