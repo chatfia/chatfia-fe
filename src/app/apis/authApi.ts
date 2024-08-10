@@ -69,22 +69,14 @@ export const authApi = {
   },
 
   // 비밀번호 변경
-  updatePassword: async ({
-    currentPassword,
-    newPassword,
-    newPasswordConfirm,
-  }: {
+  updatePassword: async (data: {
     currentPassword: string;
     newPassword: string;
     newPasswordConfirm: string;
   }): Promise<any> => {
     return fetchExtended("/api/info/password", {
       method: "PATCH",
-      body: JSON.stringify({
-        currentPassword,
-        newPassword,
-        newPasswordConfirm,
-      }),
+      body: JSON.stringify(data),
     });
   },
 };

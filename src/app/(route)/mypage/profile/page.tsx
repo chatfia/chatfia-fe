@@ -14,7 +14,7 @@ import DeleteAccount from "@/app/features/mypage/DeleteAccount";
 export default function ProfilePage() {
   const { isSuccess } = useAuthStore();
   const { setUserInfo } = useUserStore();
-  const { data, isLoading, isError } = useUserInfo();
+  const { data, isLoading, isError, refetch } = useUserInfo();
 
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -25,9 +25,8 @@ export default function ProfilePage() {
     }
   }, [isSuccess, data, setUserInfo]);
 
-  const handleNicknameUpdate = (nickname: string) => {
-    setUserInfo(nickname, data?.email || "");
-  };
+  const handleNicknameUpdate = () => refetch();
+  const handlePasswordUpdate = () => refetch();
 
   // 닉네임이 로딩 중이거나 에러가 발생했을 때의 처리
   const nickname = isLoading ? (
@@ -109,14 +108,14 @@ export default function ProfilePage() {
       <UpdatePasswordModal
         isOpen={isPasswordModalOpen}
         onClose={() => setIsPasswordModalOpen(false)}
-        onSuccess={() => console.log("비밀번호 변경 완료")}
+        onSuccess={handlePasswordUpdate}
         title="비밀번호 수정"
         currentPasswordLabel="현재 비밀번호"
         currentPasswordPlaceholder="현재 비밀번호를 입력하세요"
         newPasswordLabel="새 비밀번호"
         newPasswordPlaceholder="새 비밀번호를 입력하세요"
-        confirmValueLabel="새 비밀번호 확인"
-        confirmValuePlaceholder="새 비밀번호를 다시 입력하세요"
+        newPasswordConfirmLabel="새 비밀번호 확인"
+        newPasswordConfirmPlaceholder="새 비밀번호를 다시 입력하세요"
       />
     </div>
   );
