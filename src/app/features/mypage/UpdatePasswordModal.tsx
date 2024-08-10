@@ -31,32 +31,25 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
 
   const onSubmit = (data: any) => {
     console.log("전송할 데이터:", data);
-    updatePasswordMutation.mutate(
-      {
-        currentPassword: data.currentPassword,
-        newPassword: data.newPassword,
-        newPasswordConfirm: data.newPasswordConfirm,
+    updatePasswordMutation.mutate(data, {
+      onSuccess: () => {
+        toast({
+          title: "비밀번호가 성공적으로 변경되었습니다.",
+          variant: "success",
+          duration: 3000,
+        });
+        onSuccess(data.newPassword);
+        onClose();
       },
-      {
-        onSuccess: () => {
-          toast({
-            title: "비밀번호가 성공적으로 변경되었습니다.",
-            variant: "success",
-            duration: 3000,
-          });
-          onSuccess(data.newPassword);
-          onClose();
-        },
-        onError: (error: any) => {
-          toast({
-            title: "비밀번호 변경에 실패했습니다.",
-            description: (error as Error).message,
-            variant: "destructive",
-            duration: 3000,
-          });
-        },
+      onError: (error: any) => {
+        toast({
+          title: "비밀번호 변경에 실패했습니다.",
+          description: (error as Error).message,
+          variant: "destructive",
+          duration: 3000,
+        });
       },
-    );
+    });
   };
 
   if (!isOpen) return null;

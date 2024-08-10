@@ -44,9 +44,16 @@ export interface SignUpResponse {
   nickname: string;
 }
 
-// 닉네임 수정 시 입력 타입
+// 닉네임 수정 시 응답 타입
 export interface UpdateNicknameResponse {
   id: number;
   email: string;
   nickname: string;
+}
+
+// 비밀번호 수정 시 입력 타입
+export interface UpdatePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+  newPasswordConfirm: string;
 }
