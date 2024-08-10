@@ -34,6 +34,7 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
       {
         currentPassword: data.currentPassword,
         newPassword: data.newPassword,
+        newPasswordConfirm: data.confirmNewPassword,
       },
       {
         onSuccess: () => {
