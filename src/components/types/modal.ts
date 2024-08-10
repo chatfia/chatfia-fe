@@ -14,6 +14,6 @@ export interface UpdatePasswordModalProps {
   currentPasswordPlaceholder: string;
   newPasswordLabel: string;
   newPasswordPlaceholder: string;
-  confirmValueLabel: string;
-  confirmValuePlaceholder: string;
+  newPasswordConfirmLabel: string;
+  newPasswordConfirmPlaceholder: string;
 }

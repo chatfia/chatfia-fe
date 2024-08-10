@@ -41,7 +41,6 @@ export const SignUpForm: React.FC<AuthFormProps> = ({ step, setStep }) => {
 
   // 회원가입 폼 제출 핸들러
   function onSignUpSubmit(data: SignUpInput) {
-    console.log("회원가입: ", data);
     const { password, confirmPassword } = data;
 
     if (password !== confirmPassword) {

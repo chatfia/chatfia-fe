@@ -15,8 +15,8 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
   currentPasswordPlaceholder,
   newPasswordLabel,
   newPasswordPlaceholder,
-  confirmValueLabel,
-  confirmValuePlaceholder,
+  newPasswordConfirmLabel,
+  newPasswordConfirmPlaceholder,
 }) => {
   const {
     register,
@@ -30,11 +30,12 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
   const updatePasswordMutation = useUpdatePassword();
 
   const onSubmit = (data: any) => {
+    console.log("전송할 데이터:", data);
     updatePasswordMutation.mutate(
       {
         currentPassword: data.currentPassword,
         newPassword: data.newPassword,
-        newPasswordConfirm: data.confirmNewPassword,
+        newPasswordConfirm: data.newPasswordConfirm,
       },
       {
         onSuccess: () => {
@@ -108,17 +109,17 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
             </div>
             <div className="mb-4">
               <label className="mb-2 block text-sm text-black">
-                {confirmValueLabel}
+                {newPasswordConfirmLabel}
               </label>
               <input
                 type="password"
-                placeholder={confirmValuePlaceholder}
-                {...register("confirmNewPassword")}
+                placeholder={newPasswordConfirmPlaceholder}
+                {...register("newPasswordConfirm")}
                 className="w-full rounded border border-gray-300 px-3 py-2 text-sm text-black"
               />
-              {errors.confirmNewPassword && (
+              {errors.newPasswordConfirm && (
                 <p className="mt-1 text-[0.8rem] text-destructive">
-                  {String(errors.confirmNewPassword?.message)}
+                  {String(errors.newPasswordConfirm?.message)}
                 </p>
               )}
             </div>
