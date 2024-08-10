@@ -4,6 +4,7 @@ import {
   VerifyEmailRequest,
   VerifyCodeRequest,
   SignUpRequest,
+  UpdatePasswordRequest,
 } from "@/app/apis/types/auth";
 
 export const authApi = {
@@ -69,14 +70,13 @@ export const authApi = {
   },
 
   // 비밀번호 변경
-  updatePassword: async (data: {
-    currentPassword: string;
-    newPassword: string;
-    newPasswordConfirm: string;
-  }): Promise<any> => {
+  updatePassword: async (
+    updatePasswordData: UpdatePasswordRequest,
+  ): Promise<any> => {
+    console.log("updatePasswordData : ", updatePasswordData);
     return fetchExtended("/api/info/password", {
       method: "PATCH",
-      body: JSON.stringify(data),
+      body: JSON.stringify(updatePasswordData),
     });
   },
 };
