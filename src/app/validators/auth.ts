@@ -43,18 +43,21 @@ export const signUpSchema = z.object({
     ),
 });
 
-export const updateSchema = z
+export const updateNicknameSchema = z.object({
+  nickname: z
+    .string()
+    .min(2, { message: "닉네임은 2글자 이상이어야 합니다." })
+    .max(100, { message: "닉네임은 100글자 이하이어야 합니다." }),
+});
+
+export const updatePasswordSchema = z
   .object({
-    nickname: z
-      .string()
-      .min(2, { message: "닉네임은 2글자 이상이어야 합니다." })
-      .max(100, { message: "닉네임은 100글자 이하이어야 합니다." }),
     currentPassword: z
       .string()
       .min(6, { message: "현재 비밀번호를 입력해주세요." }),
     newPassword: z
       .string()
-      .min(6, { message: "비밀번호는 최소 6자리 이상이어야 합니다." })
+      .min(6, { message: "새 비밀번호를 입력해주세요." })
       .max(100, { message: "비밀번호는 100자리 이하이어야 합니다." })
       .refine((value) => passwordRegex.test(value), {
         message:
@@ -69,10 +72,3 @@ export const updateSchema = z
     path: ["confirmNewPassword"],
     message: "비밀번호가 일치하지 않습니다.",
   });
-
-export const updateNicknameSchema = z.object({
-  nickname: z
-    .string()
-    .min(2, { message: "닉네임은 2글자 이상이어야 합니다." })
-    .max(100, { message: "닉네임은 100글자 이하이어야 합니다." }),
-});

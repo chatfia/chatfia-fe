@@ -1,7 +1,7 @@
 import { UpdatePasswordModalProps } from "@/components/types/modal";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { updateSchema } from "@/app/validators/auth";
+import { updatePasswordSchema } from "@/app/validators/auth";
 import { useToast } from "@/components/ui/use-toast";
 import { useUpdatePassword } from "@/app/apis/hooks/useUpdatePassword";
 import { X } from "lucide-react";
@@ -11,8 +11,10 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
   onClose,
   onSuccess,
   title,
-  newValueLabel,
-  newValuePlaceholder,
+  currentPasswordLabel,
+  currentPasswordPlaceholder,
+  newPasswordLabel,
+  newPasswordPlaceholder,
   confirmValueLabel,
   confirmValuePlaceholder,
 }) => {
@@ -21,36 +23,38 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(updateSchema),
+    resolver: zodResolver(updatePasswordSchema),
   });
 
   const { toast } = useToast();
   const updatePasswordMutation = useUpdatePassword();
 
   const onSubmit = (data: any) => {
-    const handleSuccess = (response: string) => {
-      toast({
-        title: "비밀번호가 성공적으로 변경되었습니다.",
-        variant: "success",
-        duration: 3000,
-      });
-      onSuccess(data.newPassword);
-      onClose();
-    };
-
-    const handleError = (error: any) => {
-      toast({
-        title: "비밀번호 변경에 실패했습니다.",
-        description: (error as Error).message,
-        variant: "destructive",
-        duration: 3000,
-      });
-    };
-
-    updatePasswordMutation.mutate(data.newPassword, {
-      onSuccess: handleSuccess,
-      onError: handleError,
-    });
+    updatePasswordMutation.mutate(
+      {
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      },
+      {
+        onSuccess: () => {
+          toast({
+            title: "비밀번호가 성공적으로 변경되었습니다.",
+            variant: "success",
+            duration: 3000,
+          });
+          onSuccess(data.newPassword);
+          onClose();
+        },
+        onError: (error: any) => {
+          toast({
+            title: "비밀번호 변경에 실패했습니다.",
+            description: (error as Error).message,
+            variant: "destructive",
+            duration: 3000,
+          });
+        },
+      },
+    );
   };
 
   if (!isOpen) return null;
@@ -71,11 +75,27 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
               <label className="mb-2 block text-sm text-black">
-                {newValueLabel}
+                {currentPasswordLabel}
               </label>
               <input
                 type="password"
-                placeholder={newValuePlaceholder}
+                placeholder={currentPasswordPlaceholder}
+                {...register("currentPassword")}
+                className="w-full rounded border border-gray-300 px-3 py-2 text-sm text-black"
+              />
+              {errors.currentPassword && (
+                <p className="mt-1 text-[0.8rem] text-destructive">
+                  {String(errors.currentPassword?.message)}
+                </p>
+              )}
+            </div>
+            <div className="mb-4">
+              <label className="mb-2 block text-sm text-black">
+                {newPasswordLabel}
+              </label>
+              <input
+                type="password"
+                placeholder={newPasswordPlaceholder}
                 {...register("newPassword")}
                 className="w-full rounded border border-gray-300 px-3 py-2 text-sm text-black"
               />

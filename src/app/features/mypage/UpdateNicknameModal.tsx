@@ -23,35 +23,25 @@ export const UpdateNicknameModal: React.FC<UpdateNicknameModalProps> = ({
   const { toast } = useToast();
   const updateNicknameMutation = useUpdateNickname();
 
-  console.log("현재 폼 상태의 에러:", errors); // 이 부분에 추가
-
-  const onNicknameChangeSubmit = (data: any) => {
-    console.log("onSubmit 실행됨 : data >", data);
-    console.log("폼 제출 시 에러:", errors); // 이 부분에 추가
-
-    const handleSuccess = (response: string) => {
-      console.log("handleSuccess 내  : response >", response);
-      toast({
-        title: "닉네임이 성공적으로 변경되었습니다.",
-        variant: "success",
-        duration: 3000,
-      });
-      onSuccess(data.nickname);
-      onClose();
-    };
-
-    const handleError = (error: any) => {
-      toast({
-        title: "닉네임 변경에 실패했습니다.",
-        description: (error as Error).message,
-        variant: "destructive",
-        duration: 3000,
-      });
-    };
-
+  const onSubmit = (data: any) => {
     updateNicknameMutation.mutate(data.nickname, {
-      onSuccess: handleSuccess,
-      onError: handleError,
+      onSuccess: () => {
+        toast({
+          title: "닉네임이 성공적으로 변경되었습니다.",
+          variant: "success",
+          duration: 3000,
+        });
+        onSuccess(data.nickname);
+        onClose();
+      },
+      onError: (error: any) => {
+        toast({
+          title: "닉네임 변경에 실패했습니다.",
+          description: (error as Error).message,
+          variant: "destructive",
+          duration: 3000,
+        });
+      },
     });
   };
 
@@ -70,7 +60,7 @@ export const UpdateNicknameModal: React.FC<UpdateNicknameModalProps> = ({
           <div className="mb-4">
             <h2 className="text-lg font-semibold text-black">닉네임 수정</h2>
           </div>
-          <form onSubmit={handleSubmit(onNicknameChangeSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
               <label className="mb-2 block text-sm text-black">
                 현재 닉네임
