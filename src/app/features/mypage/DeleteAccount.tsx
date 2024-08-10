@@ -22,7 +22,7 @@ export default function DeleteAccount() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <div className="flex w-full max-w-3xl transform cursor-pointer items-center justify-start p-4 text-gray-400">
+        <div className="flex w-fit max-w-3xl cursor-pointer items-center justify-start p-4 text-gray-400">
           <p>회원탈퇴</p>
           <ChevronRight />
         </div>
