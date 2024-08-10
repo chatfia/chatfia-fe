@@ -62,7 +62,6 @@ export const authApi = {
 
   // 닉네임 수정
   updateNickname: async (nickname: string): Promise<any> => {
-    console.log("updateNicname API : nickname > ", nickname);
     return fetchExtended("/api/info/nickname", {
       method: "PATCH",
       body: JSON.stringify({ nickname }),
@@ -70,16 +69,14 @@ export const authApi = {
   },
 
   // 비밀번호 변경
-  updatePassword: async ({
-    currentPassword,
-    newPassword,
-  }: {
+  updatePassword: async (data: {
     currentPassword: string;
     newPassword: string;
+    newPasswordConfirm: string;
   }): Promise<any> => {
     return fetchExtended("/api/info/password", {
       method: "PATCH",
-      body: JSON.stringify({ currentPassword, newPassword }),
+      body: JSON.stringify(data),
     });
   },
 };
