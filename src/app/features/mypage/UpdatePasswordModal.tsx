@@ -30,7 +30,6 @@ export const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({
   const updatePasswordMutation = useUpdatePassword();
 
   const onSubmit = (data: any) => {
-    console.log("전송할 데이터:", data);
     updatePasswordMutation.mutate(data, {
       onSuccess: () => {
         toast({

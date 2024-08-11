@@ -73,7 +73,6 @@ export const authApi = {
   updatePassword: async (
     updatePasswordData: UpdatePasswordRequest,
   ): Promise<any> => {
-    console.log("updatePasswordData : ", updatePasswordData);
     return fetchExtended("/api/info/password", {
       method: "PATCH",
       body: JSON.stringify(updatePasswordData),
