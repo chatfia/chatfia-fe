@@ -13,8 +13,3 @@ export const useAuthStore = create<AuthState>((set) => ({
   logIn: () => set({ isSuccess: true }),
   logOut: () => set({ isSuccess: false }),
 }));
-
-// 상태 변경 시 콘솔 출력
-useAuthStore.subscribe((state) => {
-  console.log("AuthStore State:", state);
-});
