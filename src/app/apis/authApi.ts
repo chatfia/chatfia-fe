@@ -20,6 +20,9 @@ export const authApi = {
   checkAuth: async () => {
     return fetchExtended("/api/auth/check", {
       method: "GET",
+      headers: {
+        "Cache-Control": "no-cache",
+      },
     });
   },
 
