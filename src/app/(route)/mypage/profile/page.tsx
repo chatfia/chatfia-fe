@@ -17,7 +17,6 @@ export default function ProfilePage() {
   const { setUserInfo } = useUserStore();
   const { data, isLoading, isError, refetch } = useUserInfo();
 
-  // 여기에서 useNicknameStore로 닉네임을 가져옴
   const { nickname: updatedNickname } = useNicknameStore();
 
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
@@ -43,7 +42,7 @@ export default function ProfilePage() {
   ) : isError || !isSuccess ? (
     <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
   ) : (
-    <p>{updatedNickname || data?.nickname}</p> // 변경된 닉네임을 사용
+    <p>{updatedNickname || data?.nickname}</p>
   );
 
   // 이메일이 로딩 중이거나 에러가 발생했을 때의 처리
