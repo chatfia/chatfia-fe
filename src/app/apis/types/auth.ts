@@ -10,9 +10,6 @@ export interface Credentials {
   password: string;
 }
 
-// 로그인 시 입력 타입
-export type LogInRequest = Credentials;
-
 // 로그인 후 응답 타입
 export interface LogInResponse {
   isSuccess: boolean;

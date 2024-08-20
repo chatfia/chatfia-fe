@@ -3,7 +3,6 @@
 import { useAuthStore } from "@/app/stores/useAuthStore";
 import { useUserStore } from "@/app/stores/useUserStore";
 import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
-import { useNicknameStore } from "@/app/stores/useNicknameStore";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TriangleAlert } from "lucide-react";
@@ -16,8 +15,6 @@ export default function ProfilePage() {
   const { isSuccess } = useAuthStore();
   const { setUserInfo } = useUserStore();
   const { data, isLoading, isError, refetch } = useUserInfo();
-
-  const { nickname: updatedNickname } = useNicknameStore();
 
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -42,7 +39,7 @@ export default function ProfilePage() {
   ) : isError || !isSuccess ? (
     <TriangleAlert className="ml-2 h-8 w-8 text-red-400" />
   ) : (
-    <p>{updatedNickname || data?.nickname}</p>
+    <p>{data?.nickname}</p>
   );
 
   // 이메일이 로딩 중이거나 에러가 발생했을 때의 처리
