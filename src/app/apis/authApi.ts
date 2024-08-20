@@ -1,6 +1,6 @@
 import { fetchExtended } from "@/app/apis/baseApi";
 import {
-  LogInRequest,
+  Credentials,
   VerifyEmailRequest,
   VerifyCodeRequest,
   SignUpRequest,
@@ -9,7 +9,7 @@ import {
 
 export const authApi = {
   // 로그인
-  logIn: async (logInUserData: LogInRequest) => {
+  logIn: async (logInUserData: Credentials) => {
     return fetchExtended("/api/login", {
       method: "POST",
       body: JSON.stringify(logInUserData),
@@ -20,9 +20,6 @@ export const authApi = {
   checkAuth: async () => {
     return fetchExtended("/api/auth/check", {
       method: "GET",
-      headers: {
-        "Cache-Control": "no-cache",
-      },
     });
   },
 

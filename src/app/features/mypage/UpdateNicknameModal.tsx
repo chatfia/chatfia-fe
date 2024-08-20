@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateNicknameSchema } from "@/app/validators/auth";
 import { useToast } from "@/components/ui/use-toast";
-import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
 import { useUpdateNickname } from "@/app/apis/hooks/useUpdateNickname";
 import { X } from "lucide-react";
 
@@ -22,7 +21,6 @@ export const UpdateNicknameModal: React.FC<UpdateNicknameModalProps> = ({
   });
 
   const { toast } = useToast();
-  const { refetch } = useUserInfo();
   const updateNicknameMutation = useUpdateNickname();
 
   const onSubmit = (data: any) => {
@@ -33,7 +31,6 @@ export const UpdateNicknameModal: React.FC<UpdateNicknameModalProps> = ({
           variant: "success",
           duration: 3000,
         });
-        refetch();
         onSuccess(data.nickname);
         onClose();
       },
