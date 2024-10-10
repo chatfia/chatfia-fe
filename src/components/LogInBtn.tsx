@@ -2,14 +2,12 @@ import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 
-type LogInBtnProps = {
-  onClick?: () => void;
-};
+type Props = {};
 
-export default function LogInBtn({ onClick }: LogInBtnProps) {
+export default function LogInBtn({}: Props) {
   return (
     <Link href="/auth">
-      <Button variant="bounce" className="gap-2" onClick={onClick}>
+      <Button variant="bounce" size="bounce">
         LOGIN
         <LogIn />
       </Button>

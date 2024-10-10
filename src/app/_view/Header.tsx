@@ -8,6 +8,7 @@ import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import logoIcon from "../../../public/icons/logo.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DoorOpen } from "lucide-react";
 import LogInBtn from "@/components/LogInBtn";
@@ -48,10 +49,6 @@ export default function Header() {
     }
   }, [isSuccess, data, setUserInfo]);
 
-  const handleHomeClick = () => {
-    router.push("/");
-  };
-
   const handleLogOutClick = () => {
     logOutMutation.mutate();
   };
@@ -73,72 +70,56 @@ export default function Header() {
   );
 
   return (
-    <header className="fixed left-0 top-0 z-10 w-full bg-zinc-800">
-      <div className="flex items-center justify-between px-8 py-4">
-        <div onClick={handleHomeClick} className="flex cursor-pointer gap-2">
-          <Image
-            src="/icons/logo.png"
-            alt="logo"
-            width={50}
-            height={50}
-            className="no-user-select no-user-drag"
-          />
-          <Image
-            src="/imgs/chatfia.png"
-            alt="chatfia"
-            width={130}
-            height={50}
-            className="no-user-select no-user-drag"
-          />
-        </div>
-        <div className="flex gap-20 text-xl">
+    <header className="fixed left-0 top-0 z-10 flex w-full justify-center bg-gray-900">
+      <div className="flex items-center justify-center text-gray-50">
+        <div className="flex items-center justify-center gap-20 text-xl">
           <Link
             href="/rule"
             className={
               isActiveLink("/rule")
-                ? "text-red-400"
-                : "transform cursor-pointer transition hover:scale-110"
+                ? "text-red-500"
+                : "transform transition hover:scale-110"
             }
           >
             게임설명
           </Link>
-          <Link
-            href="/lobby"
-            className={
-              isActiveLink("/lobby")
-                ? "text-red-400"
-                : "transform cursor-pointer transition hover:scale-110"
-            }
-          >
-            게임로비
+          <Link href="/">
+            <Image
+              src={logoIcon}
+              alt="logo"
+              height={56}
+              className="no-user-select no-user-drag"
+            />
           </Link>
           <Link
             href="/donation"
             className={
               isActiveLink("/donation")
-                ? "text-red-400"
+                ? "text-red-500"
                 : "transform cursor-pointer transition hover:scale-110"
             }
           >
             후원하기
           </Link>
         </div>
-        {isSuccess ? (
-          <div className="flex items-center gap-4">
-            <Link href="/mypage">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>ID</AvatarFallback>
-              </Avatar>
-            </Link>
-            {nickname}님
-            <button onClick={handleLogOutClick}>
-              <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
-            </button>
-          </div>
-        ) : (
-          <LogInBtn />
-        )}
+        <div className="absolute ml-[62.5rem]">
+          {isSuccess ? (
+            <div className="flex items-center">
+              <Link href="/mypage">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>ID</AvatarFallback>
+                </Avatar>
+              </Link>
+              {nickname}님
+              <button onClick={handleLogOutClick}>
+                <DoorOpen className="h-8 w-8 text-white duration-300 hover:text-red-400" />
+              </button>
+            </div>
+          ) : (
+            <LogInBtn />
+          )}
+        </div>
       </div>
     </header>
   );
