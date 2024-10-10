@@ -1,12 +1,16 @@
 import "./globals.css";
-import { Noto_Sans_KR } from "next/font/google";
+import { Jua } from "next/font/google";
 import { QueryProvider } from "@/app/features/home/QueryProvider";
 import type { Metadata } from "next";
-import ConditionalHeader from "@/components/ConditionalHeader";
+import ConditionalHeader from "@/app/_view/ConditionalHeader";
 import ScrollToTopBtn from "@/components/ScrollToTopBtn";
 import { Toaster } from "@/components/ui/toaster";
 
-const notoSansKr = Noto_Sans_KR({ subsets: ["latin"] });
+const jua = Jua({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Chatfia | 챗피아",
@@ -20,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKr.className} pt-20`}>
+      <body className={`${jua.className} pt-20`}>
         <QueryProvider>
           <ConditionalHeader />
           {children}
