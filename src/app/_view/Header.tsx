@@ -10,11 +10,11 @@ import Link from "next/link";
 import Image from "next/image";
 import logoIcon from "../../../public/icons/logo.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DoorOpen } from "lucide-react";
-import LogInBtn from "@/components/LogInBtn";
+import LogInButton from "@/app/_view/LogInButton";
 import { useUserStore } from "@/app/stores/useUserStore";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TriangleAlert } from "lucide-react";
+import { DoorOpen, Gamepad2, TriangleAlert } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Header() {
   const { isSuccess } = useAuthStore();
@@ -70,34 +70,41 @@ export default function Header() {
   );
 
   return (
-    <header className="fixed left-0 top-0 z-10 flex w-full justify-center bg-gray-900">
+    <header className="fixed left-0 top-0 z-10 flex h-16 w-full justify-center bg-gray-900">
       <div className="flex items-center justify-center text-gray-50">
         <div className="flex items-center justify-center gap-20 text-xl">
           <Link
             href="/rule"
-            className={
-              isActiveLink("/rule")
-                ? "text-red-500"
-                : "transform transition hover:scale-110"
-            }
+            className={cn(
+              "transform transition",
+              isActiveLink("/rule") ? "text-red-500" : "hover:scale-110",
+            )}
           >
             게임설명
           </Link>
-          <Link href="/">
-            <Image
-              src={logoIcon}
-              alt="logo"
-              height={56}
-              className="no-user-select no-user-drag"
-            />
-          </Link>
+          <div className="group relative">
+            <Link href="/">
+              <Image
+                src={logoIcon}
+                alt="logo"
+                height={56}
+                className="no-user-select no-user-drag"
+              />
+            </Link>
+            <Link
+              href="/"
+              className="absolute left-1/2 top-16 flex h-12 w-40 -translate-x-1/2 transform items-center justify-center gap-3 rounded-lg bg-red-600 text-2xl text-gray-50 opacity-0 transition-opacity duration-300 hover:bg-red-700 active:bg-red-800 group-hover:opacity-100"
+            >
+              <Gamepad2 size={30} />
+              게임시작
+            </Link>
+          </div>
           <Link
             href="/donation"
-            className={
-              isActiveLink("/donation")
-                ? "text-red-500"
-                : "transform cursor-pointer transition hover:scale-110"
-            }
+            className={cn(
+              "transform cursor-pointer transition",
+              isActiveLink("/donation") ? "text-red-500" : "hover:scale-110",
+            )}
           >
             후원하기
           </Link>
@@ -117,7 +124,7 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <LogInBtn />
+            <LogInButton />
           )}
         </div>
       </div>

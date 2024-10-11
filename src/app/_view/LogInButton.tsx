@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type Props = {};
 
-export default function LogInBtn({}: Props) {
+export default function LogInButton({}: Props) {
   return (
     <Link href="/auth">
       <Button variant="bounce" size="bounce">
