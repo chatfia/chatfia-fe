@@ -1,20 +1,20 @@
 "use client";
 
-import { useAuthStore } from "@/app/stores/useAuthStore";
-import { useLogOut } from "@/app/apis/hooks/useLogOut";
-import { useRouter, usePathname } from "next/navigation";
-import { useToast } from "@/components/ui/use-toast";
-import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
 import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import logoIcon from "../../../public/icons/logo.png";
+import { DoorOpen, Gamepad2, LogIn, TriangleAlert } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import LogInButton from "@/app/_view/LogInButton";
-import { useUserStore } from "@/app/stores/useUserStore";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { DoorOpen, Gamepad2, TriangleAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/app/stores/useAuthStore";
+import { useLogOut } from "@/app/apis/hooks/useLogOut";
+import { useToast } from "@/components/ui/use-toast";
+import { useUserInfo } from "@/app/apis/hooks/useUserInfo";
+import { useUserStore } from "@/app/stores/useUserStore";
 
 export default function Header() {
   const { isSuccess } = useAuthStore();
@@ -70,9 +70,9 @@ export default function Header() {
   );
 
   return (
-    <header className="fixed left-0 top-0 z-10 flex h-16 w-full justify-center bg-gray-900">
+    <header className="fixed left-0 top-0 z-10 flex h-20 w-full justify-center bg-gray-900">
       <div className="flex items-center justify-center text-gray-50">
-        <div className="flex items-center justify-center gap-20 text-xl">
+        <div className="flex items-center justify-center gap-20 text-2xl">
           <Link
             href="/rule"
             className={cn(
@@ -84,19 +84,13 @@ export default function Header() {
           </Link>
           <div className="group relative">
             <Link href="/">
-              <Image
-                src={logoIcon}
-                alt="logo"
-                height={56}
-                className="no-user-select no-user-drag"
-              />
+              <Image src={logoIcon} alt="logo" height={60} />
             </Link>
-            <Link
-              href="/"
-              className="absolute left-1/2 top-16 flex h-12 w-40 -translate-x-1/2 transform items-center justify-center gap-3 rounded-lg bg-red-600 text-2xl text-gray-50 opacity-0 transition-opacity duration-300 hover:bg-red-700 active:bg-red-800 group-hover:opacity-100"
-            >
-              <Gamepad2 size={30} />
-              게임시작
+            <Link href="/">
+              <Button variant="start" size="start">
+                <Gamepad2 size={30} />
+                게임시작
+              </Button>
             </Link>
           </div>
           <Link
@@ -124,7 +118,12 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <LogInButton />
+            <Link href="/auth">
+              <Button variant="bounce" size="bounce">
+                로그인
+                <LogIn size={20} />
+              </Button>
+            </Link>
           )}
         </div>
       </div>

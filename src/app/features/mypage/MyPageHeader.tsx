@@ -23,7 +23,6 @@ export default function MyPageHeader() {
             alt="logo"
             width={50}
             height={50}
-            className="no-user-select no-user-drag"
             onClick={handleHomeClick}
           />
           <Link

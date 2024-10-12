@@ -27,7 +27,6 @@ export const GameRoom: React.FC<GameRoomProps> = ({
             alt={`room-${img}`}
             layout="fill"
             objectFit="cover"
-            className="z-0 no-user-select no-user-drag"
           />
         </NoRightClickImg>
       </div>

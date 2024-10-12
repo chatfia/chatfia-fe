@@ -19,14 +19,21 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         bounce:
-          "bg-red-600 animate-bounce text-base text-gray-50 hover:bg-red-700 active:bg-red-800",
+          "px-2 py-1 flex items-center bg-green-600 animate-bounce text-lg text-gray-50 hover:bg-green-700 active:bg-green-800",
+        start:
+          "absolute px-4 py-2 left-1/2 top-16 flex -translate-x-1/2 transform items-center justify-center bg-red-600 text-2xl text-gray-50 opacity-0 transition-opacity duration-300 hover:bg-red-700 active:bg-red-800 group-hover:opacity-100 outline outline-4 outline-gray-900",
+        home: "flex items-center bg-blue-600 px-3 py-2 text-xl text-gray-50 font-medium hover:bg-blue-700 active:bg-blue-800",
+        homeStart:
+          "flex items-center bg-red-600 px-3 py-2 text-xl text-gray-50 font-medium hover:bg-red-700 active:bg-red-800",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
-        bounce: "w-24 h-8 rounded-md gap-2",
+        bounce: "rounded-md gap-1",
+        start: "gap-3 rounded-lg",
+        home: "gap-1",
       },
     },
     defaultVariants: {
