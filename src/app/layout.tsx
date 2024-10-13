@@ -3,8 +3,8 @@ import { Jua } from "next/font/google";
 import { QueryProvider } from "@/app/features/home/QueryProvider";
 import type { Metadata } from "next";
 import ConditionalHeader from "@/app/_view/ConditionalHeader";
-import ScrollToTopBtn from "@/components/ScrollToTopBtn";
 import { Toaster } from "@/components/ui/toaster";
+import ScrollToTop from "./_view/ScrollToTop";
 
 const jua = Jua({
   weight: "400",
@@ -28,7 +28,7 @@ export default function RootLayout({
         <QueryProvider>
           <ConditionalHeader />
           {children}
-          <ScrollToTopBtn />
+          <ScrollToTop />
           <Toaster />
         </QueryProvider>
       </body>

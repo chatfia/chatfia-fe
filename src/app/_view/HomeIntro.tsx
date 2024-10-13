@@ -37,7 +37,7 @@ export default function HomeIntro({
         {isLast && (
           <div className="flex gap-5">
             <Link href="/rule">
-              <Button variant="home" size="home">
+              <Button variant="homeInfo" size="home">
                 <Info size={24} />
                 게임설명
               </Button>
