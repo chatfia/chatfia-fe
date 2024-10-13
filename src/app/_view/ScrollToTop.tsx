@@ -37,6 +37,7 @@ export default function ScrollToTop() {
       {isVisible && (
         <Button variant="scrollToTop" size="scrollToTop" onClick={scrollToTop}>
           <ArrowUp size={40} />
+          <ArrowUp size={40} />
         </Button>
       )}
     </div>
