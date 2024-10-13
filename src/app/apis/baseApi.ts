@@ -2,7 +2,7 @@ import returnFetch from "return-fetch";
 
 // return-fetch를 사용하여 확장된 fetch 함수
 export const fetchExtended = returnFetch({
-  baseUrl: process.env.NEXT_PUBLIC_API_URL,
+  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },

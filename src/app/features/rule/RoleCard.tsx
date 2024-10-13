@@ -45,25 +45,13 @@ export const RoleCard: React.FC<RoleCardProps> = ({
             </div>
           </div>
           <NoRightClickImg>
-            <Image
-              src={img}
-              alt={alt}
-              width={200}
-              height={320}
-              className="no-user-select no-user-drag"
-            />
+            <Image src={img} alt={alt} width={200} height={320} />
           </NoRightClickImg>
         </>
       ) : (
         <>
           <NoRightClickImg>
-            <Image
-              src={img}
-              alt={alt}
-              width={200}
-              height={320}
-              className="no-user-select no-user-drag"
-            />
+            <Image src={img} alt={alt} width={200} height={320} />
           </NoRightClickImg>
           <div className={textAlignmentStyle}>
             <div className="flex items-end space-x-2">
