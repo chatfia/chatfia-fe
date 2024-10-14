@@ -36,8 +36,7 @@ export default function ScrollToTop() {
     <div className="fixed bottom-8 right-8">
       {isVisible && (
         <Button variant="scrollToTop" size="scrollToTop" onClick={scrollToTop}>
-          <ArrowUp size={40} />
-          <ArrowUp size={40} />
+          <ArrowUp size={30} />
         </Button>
       )}
     </div>
