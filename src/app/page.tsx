@@ -2,6 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import HomeIntro from "./_view/HomeIntro";
 import HomeFeature from "./_view/HomeFeature";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import TermsOfService from "./_view/TermsOfService";
 
 export default function HomePage() {
   return (
@@ -76,11 +84,20 @@ export default function HomePage() {
         <div className="flex justify-center">
           <p>제작 : hiryuji@kakao.com (FE), kingmandoo95@gmail.com (BE)</p>
           <div className="w-4" />|<div className="w-4" />
-          <Link href="/terms/service">
-            <p className="cursor-pointer hover:text-green-300 active:text-green-400">
-              서비스 이용약관
-            </p>
-          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <p className="cursor-pointer hover:text-green-300 active:text-green-400">
+                서비스 이용약관
+              </p>
+            </DialogTrigger>
+            <DialogContent className="no-scrollbar max-h-[80vh] overflow-y-auto sm:max-w-[425px] md:max-w-[768px]">
+              <DialogHeader>
+                <DialogTitle>Chatfia(챗피아) 서비스 이용약관</DialogTitle>
+                <div className="h-1 bg-gray-950" />
+              </DialogHeader>
+              <TermsOfService />
+            </DialogContent>
+          </Dialog>
           <div className="w-4" />|<div className="w-4" />
           <Link href="/terms/privacy">
             <p className="cursor-pointer hover:text-green-300 active:text-green-400">
