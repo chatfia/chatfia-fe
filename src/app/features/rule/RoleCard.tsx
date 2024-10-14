@@ -1,5 +1,4 @@
 import { RoleCardProps } from "@/app/apis/types/rule";
-import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 
 export const RoleCard: React.FC<RoleCardProps> = ({
@@ -44,15 +43,11 @@ export const RoleCard: React.FC<RoleCardProps> = ({
               ))}
             </div>
           </div>
-          <NoRightClickImg>
-            <Image src={img} alt={alt} width={200} height={320} />
-          </NoRightClickImg>
+          <Image src={img} alt={alt} width={200} height={320} />
         </>
       ) : (
         <>
-          <NoRightClickImg>
-            <Image src={img} alt={alt} width={200} height={320} />
-          </NoRightClickImg>
+          <Image src={img} alt={alt} width={200} height={320} />
           <div className={textAlignmentStyle}>
             <div className="flex items-end space-x-2">
               <p className={`text-3xl font-bold ${textAlignmentStyle}`}>

@@ -1,6 +1,5 @@
 import { GameRoomProps } from "@/app/apis/types/lobby";
 import { useState } from "react";
-import NoRightClickImg from "@/components/NoRightClickImg";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Lock } from "lucide-react";
@@ -21,14 +20,12 @@ export const GameRoom: React.FC<GameRoomProps> = ({
   return (
     <div className="relative m-2 h-[250px] w-[280px] overflow-hidden">
       <div className="absolute h-full w-full">
-        <NoRightClickImg>
-          <Image
-            src={imgSrc}
-            alt={`room-${img}`}
-            layout="fill"
-            objectFit="cover"
-          />
-        </NoRightClickImg>
+        <Image
+          src={imgSrc}
+          alt={`room-${img}`}
+          layout="fill"
+          objectFit="cover"
+        />
       </div>
       {isPrivate && (
         <div className="absolute right-0 top-0 z-10 mr-2 mt-2">
