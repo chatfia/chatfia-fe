@@ -10,6 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import TermsOfService from "./_view/TermsOfService";
+import PrivacyPolicy from "./_view/PrivacyPolicy";
 
 export default function HomePage() {
   return (
@@ -99,11 +100,20 @@ export default function HomePage() {
             </DialogContent>
           </Dialog>
           <div className="w-4" />|<div className="w-4" />
-          <Link href="/terms/privacy">
-            <p className="cursor-pointer hover:text-green-300 active:text-green-400">
-              개인정보 처리방침
-            </p>
-          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <p className="cursor-pointer hover:text-green-300 active:text-green-400">
+                개인정보 처리방침
+              </p>
+            </DialogTrigger>
+            <DialogContent className="no-scrollbar max-h-[80vh] overflow-y-auto sm:max-w-[425px] md:max-w-[768px]">
+              <DialogHeader>
+                <DialogTitle>Chatfia(챗피아) 개인정보 처리방침</DialogTitle>
+                <div className="h-1 bg-gray-950" />
+              </DialogHeader>
+              <PrivacyPolicy />
+            </DialogContent>
+          </Dialog>
         </div>
         <div className="h-4" />
         <p className="flex justify-center">
