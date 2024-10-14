@@ -248,4 +248,13 @@ textarea {
     user-select: none;
     -webkit-user-drag: none;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 엣지 등 Webkit 기반 브라우저 */
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE 및 Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
